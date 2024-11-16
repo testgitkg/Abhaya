@@ -15,17 +15,14 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -33,7 +30,7 @@ import java.util.Date;
  * @author 1
  */
 @Entity
-@Table(name = "order")
+@Table(name = "order1")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order1 o"),
@@ -72,10 +69,6 @@ public class Order1 implements Serializable {
     @Size(max = 50)
     @Column(name = "payment_method")
     private String paymentMethod;
-    @OneToMany(mappedBy = "oid")
-    private Collection<OrderItem> orderItemCollection;
-    @OneToMany(mappedBy = "oid")
-    private Collection<OrderManage> orderManageCollection;
     @JoinColumn(name = "uid", referencedColumnName = "uid")
     @ManyToOne
     private UserMst uid;
@@ -146,24 +139,6 @@ public class Order1 implements Serializable {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
-    }
-
-    @XmlTransient
-    public Collection<OrderItem> getOrderItemCollection() {
-        return orderItemCollection;
-    }
-
-    public void setOrderItemCollection(Collection<OrderItem> orderItemCollection) {
-        this.orderItemCollection = orderItemCollection;
-    }
-
-    @XmlTransient
-    public Collection<OrderManage> getOrderManageCollection() {
-        return orderManageCollection;
-    }
-
-    public void setOrderManageCollection(Collection<OrderManage> orderManageCollection) {
-        this.orderManageCollection = orderManageCollection;
     }
 
     public UserMst getUid() {

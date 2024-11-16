@@ -12,14 +12,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.Collection;
 
 /**
  *
@@ -45,10 +42,6 @@ public class Role implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "role_name")
     private String roleName;
-    @OneToMany(mappedBy = "rid")
-    private Collection<Admin> adminCollection;
-    @OneToMany(mappedBy = "rid")
-    private Collection<UserMst> userMstCollection;
 
     public Role() {
     }
@@ -76,24 +69,6 @@ public class Role implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
-    }
-
-    @XmlTransient
-    public Collection<Admin> getAdminCollection() {
-        return adminCollection;
-    }
-
-    public void setAdminCollection(Collection<Admin> adminCollection) {
-        this.adminCollection = adminCollection;
-    }
-
-    @XmlTransient
-    public Collection<UserMst> getUserMstCollection() {
-        return userMstCollection;
-    }
-
-    public void setUserMstCollection(Collection<UserMst> userMstCollection) {
-        this.userMstCollection = userMstCollection;
     }
 
     @Override

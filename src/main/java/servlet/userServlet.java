@@ -6,7 +6,9 @@ package servlet;
 
 import ejb.userLocal;
 import entity.Cart;
+import entity.Feedback;
 import entity.Form;
+import entity.Order1;
 import entity.UserMst;
 import jakarta.ejb.EJB;
 import java.io.IOException;
@@ -16,7 +18,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -50,8 +53,9 @@ public class userServlet extends HttpServlet {
             out.println("<title>Servlet userServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1 align='center'>User List</h1>");
             
+//            user master
+            out.println("<h1 align='center'>User List</h1>");            
             Collection<UserMst> users = ul.getAllUsers();
             out.println("<table border='1' align='center'>");
             out.println("<tr>");
@@ -105,15 +109,14 @@ public class userServlet extends HttpServlet {
             }
             out.println("</table>");
             
-//            Static LocalDateTime values for created_at and updated_at
-            LocalDateTime createdAtLocal = LocalDateTime.of(2024, 11, 15, 20, 30, 0);
-            LocalDateTime updatedAtLocal = LocalDateTime.of(2024, 11, 15, 15, 45, 0);
-
-//            Convert LocalDateTime to Timestamp
-            Timestamp created_at = Timestamp.valueOf(createdAtLocal);
-            Timestamp updated_at = Timestamp.valueOf(updatedAtLocal);
+            
+//            LocalDateTime createdAtLocal = LocalDateTime.of(2024, 11, 15, 20, 30, 0);
+//            LocalDateTime updatedAtLocal = LocalDateTime.of(2024, 11, 15, 15, 45, 0);
+            Timestamp created_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 9, 20, 30, 0));
+            Timestamp updated_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 14, 15, 45, 0));
             
 //            ul.addCart(1, created_at, updated_at, "ordered");
+//            ul.addCart(3, created_at, updated_at, "ordered");
 //            ul.updateCart(2, 2, created_at, updated_at, "active");
 //            ul.deleteCart(4, 1);
 
@@ -149,10 +152,85 @@ public class userServlet extends HttpServlet {
             }
             out.println("</table>");
             
-//            long bigIntValue = 1234567890L;  // BIGINT value for mobile number
+            BigInteger mno = new BigInteger("6352778198");
 //            Date date = Date.valueOf("1990-05-15");  // Date of birth (DOB)
     
-//  error          ul.addForm(1, "aaa", 1234567890L, "Male", date, 180, 75, "Mumbai");
+//            ul.addForm(1, "aaa", mno, "Male", Date.valueOf("1990-05-15"), 180, 75, "Mumbai");
+//            ul.updateForm(3, 4, "bbb", mno, "Male", updated_at, 150, 50, "Godhara");
+//            ul.updateForm(3, 4, "bbb", mno, "Male", updated_at, 150, 50, "Godhara");
+//            ul.deleteForm(4, 1);            
+
+
+//            feedback table            
+            out.println("<br>");
+            out.println("<h1 align='center'>Feedback</h1>");
+            Collection<Feedback> feedbacks = ul.getAllFeedback();
+            out.println("<table border='1' align='center'>");
+            out.println("<tr>");
+            out.println("<th>Feedback ID</th>");
+            out.println("<th>UID</th>");
+            out.println("<th>Rating</th>");
+            out.println("<th>Comments</th>");
+            out.println("<th>Feedback Date</th>");
+            out.println("</tr>");
+
+            for (Feedback feedback : feedbacks) {
+                out.println("<tr>");
+                out.println("<td>" + feedback.getFid() + "</td>");
+                out.println("<td>" + feedback.getUid() + "</td>");
+                out.println("<td>" + feedback.getRating() + "</td>");
+                out.println("<td>" + feedback.getComments() + "</td>");
+                out.println("<td>" + feedback.getFeedbackDate() + "</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
+
+//            ul.addFeddback(1, 4, "It is very good website!!", updated_at);
+//            ul.addFeddback(2, 5, "fantabulous!!", updated_at);
+//            ul.addFeddback(1, 4, "It is very good website!!", updated_at);
+//            ul.updateFeedback(3, 3, 2, "good", updated_at);
+//            ul.deleteFeedback(4, 1);
+//            ul.deleteFeedback(5, 2);
+//            ul.deleteFeedback(6, 1);
+
+
+//            order table
+            out.println("<br>");
+            out.println("<h1 align='center'>Orders</h1>");
+            Collection<Order1> orders = ul.getAllOrders();
+            out.println("<table border='1' align='center'>");
+            out.println("<tr>");
+            out.println("<th>Order ID</th>");
+            out.println("<th>UID</th>");
+            out.println("<th>Order Date</th>");
+            out.println("<th>Status</th>");
+            out.println("<th>Total Amount</th>");
+            out.println("<th>Shipping Address</th>");
+            out.println("<th>Payment Status</th>");
+            out.println("<th>Payment Method</th>");
+            out.println("</tr>");
+
+            for(Order1 order : orders){
+                out.println("<tr>");
+                out.println("<td>" + order.getOid() + "</td>");
+                out.println("<td>" + order.getUid()+ "</td>");
+                out.println("<td>" + order.getOrderDate() + "</td>");
+                out.println("<td>" + order.getStatus() + "</td>");
+                out.println("<td>" + order.getTotalAmt() + "</td>");
+                out.println("<td>" + order.getShippingAdd() + "</td>");
+                out.println("<td>" + order.getPaymentStatus() + "</td>");
+                out.println("<td>" + order.getPaymentMethod() + "</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
+
+            BigDecimal amt = new BigDecimal("300"); 
+//            ul.addOrder(1, updated_at, "pending", amt, "Piplod,Surat", "unpaid", "COD");
+//            ul.addOrder(2, updated_at, "shipped", amt, "Varachha,Surat", "paid", "UPI");
+//            ul.updateOrder(2, 1, updated_at, "shipped", amt, "Varachha,Surat", "paid", "UPI");
+//            ul.deleteOrder(3, 2);
+//            ul.deleteOrder(4, 1);
+//            ul.deleteOrder(5, 2);
 
 //            out.println("<h1>Servlet userServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");       

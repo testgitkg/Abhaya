@@ -38,12 +38,6 @@ import java.util.Collection;
     @NamedQuery(name = "UserMst.findByAddress", query = "SELECT u FROM UserMst u WHERE u.address = :address")})
 public class UserMst implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "uid")
-    private Integer uid;
     @Size(max = 50)
     @Column(name = "uname")
     private String uname;
@@ -58,16 +52,17 @@ public class UserMst implements Serializable {
     @Column(name = "address")
     private String address;
     @OneToMany(mappedBy = "uid")
-    private Collection<Cart> cartCollection;
-    @OneToMany(mappedBy = "uid")
-    private Collection<Feedback> feedbackCollection;
-    @OneToMany(mappedBy = "uid")
-    private Collection<Form> formCollection;
+    private Collection<Order1> order1Collection;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "uid")
+    private Integer uid;
     @JoinColumn(name = "rid", referencedColumnName = "rid")
     @ManyToOne
     private Role rid;
-    @OneToMany(mappedBy = "uid")
-    private Collection<Order1> order1Collection;
 
     public UserMst() {
     }
@@ -82,6 +77,40 @@ public class UserMst implements Serializable {
 
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+
+
+    public Role getRid() {
+        return rid;
+    }
+
+    public void setRid(Role rid) {
+        this.rid = rid;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (uid != null ? uid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof UserMst)) {
+            return false;
+        }
+        UserMst other = (UserMst) object;
+        if ((this.uid == null && other.uid != null) || (this.uid != null && !this.uid.equals(other.uid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.UserMst[ uid=" + uid + " ]";
     }
 
     public String getUname() {
@@ -117,72 +146,12 @@ public class UserMst implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Cart> getCartCollection() {
-        return cartCollection;
-    }
-
-    public void setCartCollection(Collection<Cart> cartCollection) {
-        this.cartCollection = cartCollection;
-    }
-
-    @XmlTransient
-    public Collection<Feedback> getFeedbackCollection() {
-        return feedbackCollection;
-    }
-
-    public void setFeedbackCollection(Collection<Feedback> feedbackCollection) {
-        this.feedbackCollection = feedbackCollection;
-    }
-
-    @XmlTransient
-    public Collection<Form> getFormCollection() {
-        return formCollection;
-    }
-
-    public void setFormCollection(Collection<Form> formCollection) {
-        this.formCollection = formCollection;
-    }
-
-    public Role getRid() {
-        return rid;
-    }
-
-    public void setRid(Role rid) {
-        this.rid = rid;
-    }
-
-    @XmlTransient
     public Collection<Order1> getOrder1Collection() {
         return order1Collection;
     }
 
     public void setOrder1Collection(Collection<Order1> order1Collection) {
         this.order1Collection = order1Collection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (uid != null ? uid.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserMst)) {
-            return false;
-        }
-        UserMst other = (UserMst) object;
-        if ((this.uid == null && other.uid != null) || (this.uid != null && !this.uid.equals(other.uid))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entity.UserMst[ uid=" + uid + " ]";
     }
     
 }

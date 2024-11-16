@@ -5,12 +5,15 @@
 package ejb;
 
 import entity.Cart;
+import entity.Feedback;
 import entity.Form;
+import entity.Order1;
 import entity.Role;
 import entity.UserMst;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -131,10 +134,124 @@ public class user implements userLocal {
     }
 
     @Override
+    public void updateForm(Integer form_id, Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Form f = (Form) em.find(Form.class, form_id);
+        f.setFormId(form_id);
+        um.setUid(uid);
+        f.setFname(fname);
+        f.setMno(mno);
+        f.setGender(gender);
+        f.setDob(dob);
+        f.setHeight(height);
+        f.setWeight(weight);
+        f.setAddress(address);
+        em.merge(f);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteForm(Integer form_id, Integer uid) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Form f = (Form) em.find(Form.class, form_id);
+        em.remove(f);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
     public Collection<Form> getAllForm() {
         return em.createNamedQuery("Form.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    
+//    feedback table
+
+    @Override
+    public void addFeddback(Integer uid, Integer rating, String comments, Date feedback_date) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Feedback fd = new Feedback();
+        um.setUid(uid);
+        fd.setRating(rating);
+        fd.setComments(comments);
+        fd.setFeedbackDate(feedback_date);
+        em.persist(fd);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updateFeedback(Integer fid, Integer uid, Integer rating, String comments, Date feedback_date) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Feedback fd = (Feedback) em.find(Feedback.class, fid);
+        fd.setFid(fid);
+        um.setUid(uid);
+        fd.setRating(rating);
+        fd.setComments(comments);
+        fd.setFeedbackDate(feedback_date);
+        em.merge(fd);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteFeedback(Integer fid, Integer uid) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Feedback fd = (Feedback) em.find(Feedback.class, fid);
+        em.remove(fd);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Feedback> getAllFeedback() {
+        return em.createNamedQuery("Feedback.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+//    order 
+    @Override
+    public void addOrder(Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Order1 or = new Order1();
+        um.setUid(uid);
+        or.setOrderDate(order_date);
+        or.setStatus(status);
+        or.setTotalAmt(total_amt);
+        or.setShippingAdd(shipping_add);;
+        or.setPaymentStatus(payment_status);
+        or.setPaymentMethod(payment_method);
+        em.persist(or);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updateOrder(Integer oid, Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Order1 or = (Order1) em.find(Order1.class, oid);
+        or.setOid(oid);
+        um.setUid(uid);
+        or.setOrderDate(order_date);
+        or.setStatus(status);
+        or.setTotalAmt(total_amt);
+        or.setShippingAdd(shipping_add);;
+        or.setPaymentStatus(payment_status);
+        or.setPaymentMethod(payment_method);
+        em.merge(or);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteOrder(Integer oid, Integer uid) {
+        UserMst um = (UserMst) em.find(UserMst.class, uid);
+        Order1 or = (Order1) em.find(Order1.class, oid);
+        em.remove(or);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Order1> getAllOrders() {
+        return em.createNamedQuery("Order1.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
     
     
 }

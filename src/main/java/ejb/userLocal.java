@@ -5,9 +5,12 @@
 package ejb;
 
 import entity.Cart;
+import entity.Feedback;
 import entity.Form;
+import entity.Order1;
 import entity.UserMst;
 import jakarta.ejb.Local;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -33,5 +36,19 @@ public interface userLocal {
     
 //    form
     void addForm(Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address);
+    void updateForm(Integer form_id, Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address);
+    void deleteForm(Integer form_id, Integer uid);
     Collection<Form> getAllForm();
+    
+//    feedback
+    void addFeddback(Integer uid, Integer rating, String comments, Date feedback_date);
+    void updateFeedback(Integer fid, Integer uid, Integer rating, String comments, Date feedback_date);
+    void deleteFeedback(Integer fid, Integer uid);
+    Collection<Feedback> getAllFeedback();
+    
+//    Order1
+    void addOrder(Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method);
+    void updateOrder(Integer oid, Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method);
+    void deleteOrder(Integer oid, Integer uid);
+    Collection<Order1> getAllOrders();
 }
