@@ -8,6 +8,7 @@ import entity.Cart;
 import entity.Feedback;
 import entity.Form;
 import entity.Order1;
+import entity.OrderItem;
 import entity.UserMst;
 import jakarta.ejb.Local;
 import java.math.BigDecimal;
@@ -51,4 +52,10 @@ public interface userLocal {
     void updateOrder(Integer oid, Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method);
     void deleteOrder(Integer oid, Integer uid);
     Collection<Order1> getAllOrders();
+    
+//    order item
+    void addOrderItem(Integer oid, Integer mid, Integer quantity, BigDecimal price, BigDecimal total_amt);
+    void updateOrderItem(Integer order_item_id, Integer oid, Integer mid, Integer quantity, BigDecimal price, BigDecimal total_amt);
+    void deleteOrderItem(Integer order_item_id, Integer oid, Integer mid);
+    Collection<OrderItem> getAllOrderItems();
 }

@@ -8,8 +8,11 @@ import ejb.adminLocal;
 import entity.Admin;
 import entity.Blog;
 import entity.Brand;
+import entity.CartItem;
 import entity.Category;
+import entity.InventoryManage;
 import entity.Medicine;
+import entity.OrderManage;
 import entity.Role;
 import jakarta.ejb.EJB;
 import java.io.IOException;
@@ -19,10 +22,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
 import java.util.Base64;
 import java.util.Collection;
 
@@ -58,8 +63,6 @@ public class adminServlet extends HttpServlet {
             
 //            role's tab;e
             out.println("<h1 align='center'>Roles</h1>");
-//            ad.addRole("Admin");
-//            ad.addRole("User");
             Collection<Role> roles = ad.getAllRoles();
             out.println("<table border='1' align='center'>");
             out.println("<tr>");
@@ -74,14 +77,16 @@ public class adminServlet extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
+            
+//            ad.addRole("Admin");
+//            ad.addRole("User");
+//            ad.updateRole(3, "Manager");
+//            ad.deleteRole(4);
+        
 
             
 //            admin table
-            out.println("<br>");            
-//            ad.addAdmin("Khushi","khushi@gmail.com", "123", 1);
-//            ad.updateAdmin(2, "Mitali", "mitali@gmail.com", "123", 1);
-//            ad.deleteAdmin(3, 1);
-
+            out.println("<br>");
             out.println("<h1 align='center'>Admin</h1>");
             Collection<Admin> admins = ad.getAllAdmin();
             out.println("<table border='1' align='center'>");
@@ -102,22 +107,15 @@ public class adminServlet extends HttpServlet {
                 out.println("<td>" + admin.getRid() + "</td>");
                 out.println("</tr>");
             }
-            out.println("</table>");
+            out.println("</table>");            
+            
+//            ad.addAdmin("Khushi","khushi@gmail.com", "123", 1);
+//            ad.updateAdmin(2, "Mitali", "mitali@gmail.com", "123", 1);
+//            ad.deleteAdmin(3, 1);
 
             
 //            Blog
-            out.println("<br>");                              
-//            Static LocalDateTime values for created_at and updated_at
-            LocalDateTime createdAtLocal = LocalDateTime.of(2024, 11, 15, 14, 30, 0);
-            LocalDateTime updatedAtLocal = LocalDateTime.of(2024, 11, 15, 15, 45, 0);
-
-//            Convert LocalDateTime to Timestamp
-            Timestamp created_at = Timestamp.valueOf(createdAtLocal);
-            Timestamp updated_at = Timestamp.valueOf(updatedAtLocal);
-//            ad.addBlog(1, "Happiness", "Happiness boosts health and longevity!!", "published", created_at, updated_at, "Health");            
-//            ad.updateBlog(2, 1, "Sadness", "Sadness harms health, increasing stress levels!!", "published", created_at, updated_at, "Health");
-//            ad.deleteBlog(3, 1);
-
+            out.println("<br>");
             out.println("<h1 align='center'>Blogs</h1>");
             Collection<Blog> blogs = ad.getAllBlog();
             out.println("<table border='1' align='center'>");
@@ -144,23 +142,18 @@ public class adminServlet extends HttpServlet {
                 out.println("<td>" + blog.getTags() + "</td>");
                 out.println("</tr>");
             }
-            out.println("</table>");
+            out.println("</table>");        
+            
+            
+           Timestamp created_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 15, 14, 30, 0));
+            Timestamp updated_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 15, 15, 45, 0));
+//            ad.addBlog(1, "Happiness", "Happiness boosts health and longevity!!", "published", created_at, updated_at, "Health");            
+//            ad.updateBlog(2, 1, "Sadness", "Sadness harms health, increasing stress levels!!", "published", created_at, updated_at, "Health");
+//            ad.deleteBlog(3, 1);
         
 
 //            brand
-
             out.println("<br>");
-//            byte[] himalayaImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\brand\\himalaya.png"));
-//            ad.addBrand("Himalaya", himalayaImg, "Himalaya Wellness Company", "India", "https://www.himalayawellness.in");
-//            byte[] daburImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\brand\\dabur.png"));
-//            ad.addBrand("Dabur", daburImg, "Dabur India Ltd", "India", "https://www.dabur.com");
-            
-//            byte[] soultreeImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\brand\\soultree.png"));
-//            ad.updateBrand(2, "Dabur", soultreeImg, "SoulTree", "India", " https://www.soultree.in");
-            
-//            ad.deleteBrand(3);
-//            ad.deleteBrand(4);
-
             out.println("<h1 align='center'>Brands</h1>");
             Collection<Brand> brands = ad.getAllBrands(); // Assume this retrieves all Brand objects
             out.println("<table border='1' align='center'>");
@@ -178,7 +171,6 @@ public class adminServlet extends HttpServlet {
                 out.println("<td>" + brand.getBid() + "</td>");
                 out.println("<td>" + brand.getBname() + "</td>");
 
-                // Display image as Base64 encoded string
                 if (brand.getBimg() != null) {
                     String base64Image = Base64.getEncoder().encodeToString(brand.getBimg());
                     out.println("<td><img src='data:image/png;base64," + base64Image + "' width='150' height='110'></td>");
@@ -192,14 +184,21 @@ public class adminServlet extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
+            
+//            byte[] himalayaImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\brand\\himalaya.png"));
+//            ad.addBrand("Himalaya", himalayaImg, "Himalaya Wellness Company", "India", "https://www.himalayawellness.in");
+//            byte[] daburImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\brand\\dabur.png"));
+//            ad.addBrand("Dabur", daburImg, "Dabur India Ltd", "India", "https://www.dabur.com");
+            
+//            byte[] soultreeImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\brand\\soultree.png"));
+//            ad.updateBrand(2, "Dabur", soultreeImg, "SoulTree", "India", " https://www.soultree.in");
+            
+//            ad.deleteBrand(3);
+//            ad.deleteBrand(4);
+
 
 //            category 
-            out.println("<br>");            
-//            ad.addCategory("Repository-Care", "Comprehensive solutions for health and wellness.");
-//            ad.updateCategory(2, "Skin-Care", "Enhancing skin health and radiance naturally.");
-//            ad.updateCategory(5, "Baby-Care", "Nurturing care for your baby's health.");
-//            ad.deleteCategory(3);
-
+            out.println("<br>");
             out.println("<h1 align='center'>Categories</h1>");
             Collection<Category> categories = ad.getAllCategories();  // Assume this retrieves all Category objects
             out.println("<table border='1' align='center'>");
@@ -216,22 +215,16 @@ public class adminServlet extends HttpServlet {
                 out.println("<td>" + category.getDescription() + "</td>");
                 out.println("</tr>");
             }
-            out.println("</table>");
+            out.println("</table>");     
+            
+//            ad.addCategory("Repository-Care", "Comprehensive solutions for health and wellness.");
+//            ad.updateCategory(2, "Skin-Care", "Enhancing skin health and radiance naturally.");
+//            ad.updateCategory(5, "Baby-Care", "Nurturing care for your baby's health.");
+//            ad.deleteCategory(3);
 
 //            medicine
             out.println("<br>");
             out.println("<h1 align='center'>Medicines</h1>");
-
-            // Add a new Medicine
-            byte[] antisepticImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\cat_imgs\\antiseptic.png"));
-            ad.addMedicine("Antiseptic", antisepticImg, "Prevents infection and heals wounds", 150, "100ml", "Available", 1, 2); // Example data
-         
-//            byte[] updatedMedicineImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\medicine\\updated_medicine.png"));
-//            ad.updateMedicine(1, "Updated Medicine", updatedMedicineImg, "Updated description", 300, "200ml", "Out of Stock", 1, 2);
-            
-//            ad.deleteMedicine(2, 1, 2); // Deletes the medicine with mid=2, bid=1, cat_id=2
-
-            // Display Medicines in a Table
             Collection<Medicine> medicines = ad.getAllMedicines(); // Assume this retrieves all Medicine objects
             out.println("<table border='1' align='center'>");
             out.println("<tr>");
@@ -252,12 +245,12 @@ public class adminServlet extends HttpServlet {
                 out.println("<td>" + medicine.getMname() + "</td>");
 
                 // Display image as Base64 encoded string
-//                if (medicine.getImg() != null) {
-//                    String base64Image = Base64.getEncoder().encodeToString(medicine.getImg());
-//                    out.println("<td><img src='data:cat_imgs/png;base64," + base64Image + "' width='100' height='130'></td>");
-//                } else {
-//                    out.println("<td>No Image</td>");
-//                }
+                if (medicine.getImg() != null) {
+                    String base64Image = Base64.getEncoder().encodeToString(medicine.getImg());
+                    out.println("<td><img src='data:cat_imgs/png;base64," + base64Image + "' width='100' height='130'></td>");
+                } else {
+                    out.println("<td>No Image</td>");
+                }
 
                 out.println("<td>" + medicine.getDescription() + "</td>");
                 out.println("<td>" + medicine.getPrice() + "</td>");
@@ -268,8 +261,119 @@ public class adminServlet extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
-
             
+//                        try {                
+//                byte[] antisepticImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\medicine\\antiseptic.png"));
+//                ad.addMedicine("Antiseptic", antisepticImg, "Prevents infection and heals wounds", 150, "100ml", "Available", 1, 2);
+
+//                byte[] anxietyImg = Files.readAllBytes(Paths.get("E:\\Java EE\\abhaya\\src\\main\\webapp\\medicine\\anxiety.png"));
+//                ad.updateMedicine(2, "Anxiety", anxietyImg, "Relieves stress and anxiety", 500, "60 tablets", "Out of Stock", 1, 2);
+
+            //    ad.deleteMedicine(2, 1, 2);
+//            } catch (IOException e) {
+//                out.println("<p>Error reading image file: " + e.getMessage() + "</p>");
+//                e.printStackTrace();
+//            } catch (Exception e) {
+//                out.println("<p>Error while performing database operations: " + e.getMessage() + "</p>");
+//                e.printStackTrace();
+//            }
+
+
+//            cart item
+                out.println("<br>");
+                out.println("<h1 align='center'>Cart Items</h1>");
+                Collection<CartItem> cartItems = ad.getAllCartItems();
+                out.println("<table border='1' align='center'>");
+                out.println("<tr>");
+                out.println("<th>Cart Item ID</th>");
+                out.println("<th>Cart ID</th>");
+                out.println("<th>Medicine ID</th>");
+                out.println("<th>Quantity</th>");
+                out.println("<th>Price</th>");
+                out.println("<th>Actions</th>");
+                out.println("</tr>");
+
+                for (CartItem cartItem : cartItems) {
+                    out.println("<tr>");
+                    out.println("<td>" + cartItem.getCartItemId() + "</td>");
+                    out.println("<td>" + cartItem.getCartid() + "</td>");
+                    out.println("<td>" + cartItem.getMid() + "</td>");
+                    out.println("<td>" + cartItem.getQuantity() + "</td>");
+                    out.println("<td>" + cartItem.getPrice() + "</td>");
+                    out.println("</tr>");
+                }
+                out.println("</table>");
+                
+            BigDecimal price = new BigDecimal("190");         
+//            ad.addCartItem(2, 1, 2, price);            
+//            ad.addCartItem(1, 2, 1, price);
+//            ad.addCartItem(2, 1, 3, price);
+
+//            ad.updateCartItem(2, 2, 1, 2, price);
+//            ad.deleteCartItem(1, 2, 1);
+
+//            order manage
+            out.println("<br>");
+            out.println("<h1 align='center'>Order Management</h1>");
+            Collection<OrderManage> orderManagements = ad.getAllOrderManages(); // Assume this retrieves all OrderManage objects
+            out.println("<table border='1' align='center'>");
+            out.println("<tr>");
+            out.println("<th>Manage ID</th>");
+            out.println("<th>Order ID</th>");
+            out.println("<th>Status</th>");
+            out.println("<th>Timestamp</th>");
+            out.println("</tr>");
+
+            for (OrderManage orderManage : orderManagements) {
+                out.println("<tr>");
+                out.println("<td>" + orderManage.getManageId() + "</td>");
+                out.println("<td>" + orderManage.getOid() + "</td>");
+                out.println("<td>" + orderManage.getStatus() + "</td>");
+                out.println("<td>" + orderManage.getTimestamp() + "</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
+           
+//            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.of(2024, 9, 5, 9, 20));
+//            ad.addOrderManage(1, "processing", timestamp);
+//            ad.addOrderManage(1, "Processing", new Timestamp(System.currentTimeMillis()));
+//            ad.addOrderManage(2, "shipped", Timestamp.valueOf("2024-11-16 10:00:00"));
+//            ad.updateOrderManage(2, 1, "shipped", timestamp);
+//            ad.deleteOrderManage(5, 1);
+
+//            inventory manage
+            out.println("<br>");
+            out.println("<h1 align='center'>Inventory Manage</h1>");
+            Collection<InventoryManage> inventories = ad.getAllInventories();
+            out.println("<table border='1' align='center'>");
+            out.println("<tr>");
+            out.println("<th>Inventory ID</th>");
+            out.println("<th>Medicine ID</th>");
+            out.println("<th>Quantity</th>");
+            out.println("<th>Action</th>");
+            out.println("<th>Action Date</th>");
+            out.println("<th>Managed By</th>");
+            out.println("<th>Notes</th>");
+            out.println("</tr>");
+
+            for (InventoryManage inventory : inventories) {
+                out.println("<tr>");
+                out.println("<td>" + inventory.getInventoryId() + "</td>");
+                out.println("<td>" + inventory.getMid() + "</td>");
+                out.println("<td>" + inventory.getQuantity() + "</td>");
+                out.println("<td>" + inventory.getAction() + "</td>");
+                out.println("<td>" + inventory.getActionDate() + "</td>");
+                out.println("<td>" + inventory.getManagedBy() + "</td>");
+                out.println("<td>" + inventory.getNotes() + "</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
+            
+//            ad.addInventory(1, 7, "add", Timestamp.valueOf("2024-11-16 10:00:00"), 1, "Restocked with new supply");
+//            ad.addInventory(2, 10, "remove", Timestamp.valueOf("2024-11-16 10:00:00"), 1, "Removed stock.");
+            
+//            ad.updateInventory(2, 1, 20, "Removed Stock", Timestamp.valueOf("2024-11-16 12:00:00"), 1, "Adjusted due to damaged items.");
+//            ad.deleteInventory(3, 3);
 //            out.println("<h1>Servlet adminServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");

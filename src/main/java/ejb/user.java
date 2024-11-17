@@ -7,7 +7,9 @@ package ejb;
 import entity.Cart;
 import entity.Feedback;
 import entity.Form;
+import entity.Medicine;
 import entity.Order1;
+import entity.OrderItem;
 import entity.Role;
 import entity.UserMst;
 import jakarta.ejb.Stateless;
@@ -249,6 +251,52 @@ public class user implements userLocal {
     @Override
     public Collection<Order1> getAllOrders() {
         return em.createNamedQuery("Order1.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+//    order item
+
+    @Override
+    public void addOrderItem(Integer oid, Integer mid, Integer quantity, BigDecimal price, BigDecimal total_amt) {
+        Order1 or = (Order1) em.find(Order1.class, oid);
+        Medicine m = (Medicine) em.find(Medicine.class, mid);
+        OrderItem ot = new OrderItem();
+        or.setOid(oid);
+        m.setMid(mid);
+        ot.setQuantity(quantity);
+        ot.setPrice(price);
+        ot.setTotalAmt(total_amt);
+        em.persist(ot);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void updateOrderItem(Integer order_item_id, Integer oid, Integer mid, Integer quantity, BigDecimal price, BigDecimal total_amt) {
+        Order1 or = (Order1) em.find(Order1.class, oid);
+        Medicine m = (Medicine) em.find(Medicine.class, mid);
+        OrderItem ot = (OrderItem) em.find(OrderItem.class, order_item_id);
+        ot.setOrderItemId(order_item_id);
+        or.setOid(oid);
+        m.setMid(mid);
+        ot.setQuantity(quantity);
+        ot.setPrice(price);
+        ot.setTotalAmt(total_amt);
+        em.merge(ot);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void deleteOrderItem(Integer order_item_id, Integer oid, Integer mid) {
+        Order1 or = (Order1) em.find(Order1.class, oid);
+        Medicine m = (Medicine) em.find(Medicine.class, mid);
+        OrderItem ot = (OrderItem) em.find(OrderItem.class, order_item_id);
+        em.remove(ot);
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<OrderItem> getAllOrderItems() {
+        return em.createNamedQuery("OrderItem.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

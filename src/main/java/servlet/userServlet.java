@@ -9,6 +9,7 @@ import entity.Cart;
 import entity.Feedback;
 import entity.Form;
 import entity.Order1;
+import entity.OrderItem;
 import entity.UserMst;
 import jakarta.ejb.EJB;
 import java.io.IOException;
@@ -151,13 +152,10 @@ public class userServlet extends HttpServlet {
                 out.println("</tr>");
             }
             out.println("</table>");
-            
-            BigInteger mno = new BigInteger("6352778198");
-//            Date date = Date.valueOf("1990-05-15");  // Date of birth (DOB)
-    
-//            ul.addForm(1, "aaa", mno, "Male", Date.valueOf("1990-05-15"), 180, 75, "Mumbai");
-//            ul.updateForm(3, 4, "bbb", mno, "Male", updated_at, 150, 50, "Godhara");
-//            ul.updateForm(3, 4, "bbb", mno, "Male", updated_at, 150, 50, "Godhara");
+           
+//            ul.addForm(1, "aaa", new BigInteger("6352778198");, "Male", Date.valueOf("1990-05-15"), 180, 75, "Mumbai");
+//            ul.updateForm(3, 4, "bbb", new BigInteger("6352778198");, "Male", Date.valueOf("1990-05-15");, 150, 50, "Godhara");
+//            ul.updateForm(3, 4, "bbb", new BigInteger("6352778198");, "Male", Date.valueOf("1990-05-15");, 150, 50, "Godhara");
 //            ul.deleteForm(4, 1);            
 
 
@@ -224,13 +222,51 @@ public class userServlet extends HttpServlet {
             }
             out.println("</table>");
 
-            BigDecimal amt = new BigDecimal("300"); 
-//            ul.addOrder(1, updated_at, "pending", amt, "Piplod,Surat", "unpaid", "COD");
-//            ul.addOrder(2, updated_at, "shipped", amt, "Varachha,Surat", "paid", "UPI");
-//            ul.updateOrder(2, 1, updated_at, "shipped", amt, "Varachha,Surat", "paid", "UPI");
+//            ul.addOrder(1, updated_at, "pending", new BigDecimal("200"), "Piplod,Surat", "unpaid", "COD");
+//            ul.addOrder(2, updated_at, "shipped", new BigDecimal("150"), "Varachha,Surat", "paid", "UPI");
+//            ul.updateOrder(2, 1, updated_at, "shipped", new BigDecimal("300"), "Varachha,Surat", "paid", "UPI");
 //            ul.deleteOrder(3, 2);
 //            ul.deleteOrder(4, 1);
 //            ul.deleteOrder(5, 2);
+
+//            order item
+
+            out.println("<br>");
+            out.println("<h1 align='center'>Order Items</h1>");
+            Collection<OrderItem> orderItems = ul.getAllOrderItems(); // Assume this retrieves all OrderItem objects
+            out.println("<table border='1' align='center'>");
+            out.println("<tr>");
+            out.println("<th>Order Item ID</th>");
+            out.println("<th>Order ID</th>");
+            out.println("<th>Medicine ID</th>");
+            out.println("<th>Quantity</th>");
+            out.println("<th>Price</th>");
+            out.println("<th>Total Amount</th>");
+            out.println("</tr>");
+
+            for (OrderItem orderItem : orderItems) {
+                out.println("<tr>");
+                out.println("<td>" + orderItem.getOrderItemId() + "</td>");
+                out.println("<td>" + orderItem.getOid() + "</td>");
+                out.println("<td>" + orderItem.getMid() + "</td>");
+                out.println("<td>" + orderItem.getQuantity() + "</td>");
+                out.println("<td>" + orderItem.getPrice() + "</td>");
+                out.println("<td>" + orderItem.getTotalAmt() + "</td>");
+                out.println("</tr>");
+            }
+            out.println("</table>");
+            
+//            ul.addOrderItem(1, 2, 10, new BigDecimal("150"), new BigDecimal("1500.00"));
+//            ul.addOrderItem(2, 1, 5, new BigDecimal("200"), new BigDecimal("1000.00"));
+            
+//            ul.updateOrderItem(3, 1, 1, 20, new BigDecimal("120"), new BigDecimal("2400.00"));
+//            ul.deleteOrderItem(4, 2, 1);
+//            ul.deleteOrderItem(5, 1, 2);
+//            ul.deleteOrderItem(6, 2, 1);
+
+
+
+
 
 //            out.println("<h1>Servlet userServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");       
