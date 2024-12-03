@@ -20,10 +20,11 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
- * @author 1
+ * @author abhaya
  */
 @Stateless
 public class user implements userLocal {
@@ -71,11 +72,11 @@ public class user implements userLocal {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-    @Override
-    public Collection<UserMst> getAllUsers() {
-        return em.createNamedQuery("UserMst.findAll").getResultList();
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+//    @Override
+//    public List<UserMst> getAllUsers() {
+//        return em.createNamedQuery("UserMst.findAll").getResultList();
+////        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
     
 //    Cart table
     @Override
@@ -112,7 +113,7 @@ public class user implements userLocal {
     }
     
    @Override
-    public Collection<Cart> getAllCart() {
+    public List<Cart> getAllCart() {
         return em.createNamedQuery("Cart.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -123,7 +124,7 @@ public class user implements userLocal {
     public void addForm(Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Form f = new Form();
-        um.setUid(uid);
+        f.setUid(um);
         f.setFname(fname);
         f.setMno(mno);
         f.setGender(gender);
@@ -140,7 +141,7 @@ public class user implements userLocal {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Form f = (Form) em.find(Form.class, form_id);
         f.setFormId(form_id);
-        um.setUid(uid);
+        f.setUid(um);
         f.setFname(fname);
         f.setMno(mno);
         f.setGender(gender);
@@ -158,13 +159,7 @@ public class user implements userLocal {
         Form f = (Form) em.find(Form.class, form_id);
         em.remove(f);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public Collection<Form> getAllForm() {
-        return em.createNamedQuery("Form.findAll").getResultList();
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    }  
     
     
 //    feedback table
@@ -173,7 +168,7 @@ public class user implements userLocal {
     public void addFeddback(Integer uid, Integer rating, String comments, Date feedback_date) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Feedback fd = new Feedback();
-        um.setUid(uid);
+        fd.setUid(um);
         fd.setRating(rating);
         fd.setComments(comments);
         fd.setFeedbackDate(feedback_date);
@@ -186,7 +181,7 @@ public class user implements userLocal {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Feedback fd = (Feedback) em.find(Feedback.class, fid);
         fd.setFid(fid);
-        um.setUid(uid);
+        fd.setUid(um);
         fd.setRating(rating);
         fd.setComments(comments);
         fd.setFeedbackDate(feedback_date);
@@ -202,18 +197,13 @@ public class user implements userLocal {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public Collection<Feedback> getAllFeedback() {
-        return em.createNamedQuery("Feedback.findAll").getResultList();
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 //    order 
     @Override
     public void addOrder(Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Order1 or = new Order1();
-        um.setUid(uid);
+        or.setUid(um);
         or.setOrderDate(order_date);
         or.setStatus(status);
         or.setTotalAmt(total_amt);
@@ -229,7 +219,7 @@ public class user implements userLocal {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Order1 or = (Order1) em.find(Order1.class, oid);
         or.setOid(oid);
-        um.setUid(uid);
+        or.setUid(um);
         or.setOrderDate(order_date);
         or.setStatus(status);
         or.setTotalAmt(total_amt);
@@ -249,10 +239,12 @@ public class user implements userLocal {
     }
 
     @Override
-    public Collection<Order1> getAllOrders() {
+    public List<Order1> getAllOrders() {
         return em.createNamedQuery("Order1.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    
     
 //    order item
 
@@ -261,8 +253,8 @@ public class user implements userLocal {
         Order1 or = (Order1) em.find(Order1.class, oid);
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         OrderItem ot = new OrderItem();
-        or.setOid(oid);
-        m.setMid(mid);
+        ot.setOid(or);
+        ot.setMid(m);
         ot.setQuantity(quantity);
         ot.setPrice(price);
         ot.setTotalAmt(total_amt);
@@ -276,8 +268,8 @@ public class user implements userLocal {
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         OrderItem ot = (OrderItem) em.find(OrderItem.class, order_item_id);
         ot.setOrderItemId(order_item_id);
-        or.setOid(oid);
-        m.setMid(mid);
+        ot.setOid(or);
+        ot.setMid(m);
         ot.setQuantity(quantity);
         ot.setPrice(price);
         ot.setTotalAmt(total_amt);
@@ -295,7 +287,7 @@ public class user implements userLocal {
     }
 
     @Override
-    public Collection<OrderItem> getAllOrderItems() {
+    public List<OrderItem> getAllOrderItems() {
         return em.createNamedQuery("OrderItem.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

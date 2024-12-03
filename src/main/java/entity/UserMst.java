@@ -4,6 +4,7 @@
  */
 package entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,6 +43,7 @@ public class UserMst implements Serializable {
     @Column(name = "uname")
     private String uname;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
     @Column(name = "email")
     private String email;
@@ -51,6 +53,8 @@ public class UserMst implements Serializable {
     @Size(max = 300)
     @Column(name = "address")
     private String address;
+    @OneToMany(mappedBy = "uid")
+    private Collection<Feedback> feedbackCollection;
     @OneToMany(mappedBy = "uid")
     private Collection<Order1> order1Collection;
 
@@ -112,6 +116,13 @@ public class UserMst implements Serializable {
     public String toString() {
         return "entity.UserMst[ uid=" + uid + " ]";
     }
+    @JsonbTransient
+    public Collection<Order1> getOrder1Collection() {
+        return order1Collection;
+    }
+    public void setOrder1Collection(Collection<Order1> order1Collection) {
+        this.order1Collection = order1Collection;
+    }
 
     public String getUname() {
         return uname;
@@ -146,12 +157,12 @@ public class UserMst implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Order1> getOrder1Collection() {
-        return order1Collection;
+    public Collection<Feedback> getFeedbackCollection() {
+        return feedbackCollection;
     }
 
-    public void setOrder1Collection(Collection<Order1> order1Collection) {
-        this.order1Collection = order1Collection;
+    public void setFeedbackCollection(Collection<Feedback> feedbackCollection) {
+        this.feedbackCollection = feedbackCollection;
     }
     
 }

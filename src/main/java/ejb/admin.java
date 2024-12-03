@@ -10,21 +10,25 @@ import entity.Brand;
 import entity.Cart;
 import entity.CartItem;
 import entity.Category;
+import entity.Feedback;
+import entity.Form;
 import entity.InventoryManage;
 import entity.Medicine;
 import entity.Order1;
 import entity.OrderManage;
 import entity.Role;
+import entity.UserMst;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *
- * @author 1
+ * @author abhaya
  */
 @Stateless
 public class admin implements adminLocal {
@@ -61,10 +65,23 @@ public class admin implements adminLocal {
     }    
     
     @Override
-    public Collection<Role> getAllRoles() {
+    public List<Role> getAllRoles() {
         return em.createNamedQuery("Role.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<Role> getRoleById(Integer rid) {
+        return em.createNamedQuery("Role.findByRid").setParameter("rid", rid).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }    
+
+    @Override
+    public Collection<Role> getRoleByName(String role_name) {
+        return em.createNamedQuery("Role.findByRoleName").setParameter("roleName", role_name).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 
 //    admin
     @Override
@@ -101,10 +118,24 @@ public class admin implements adminLocal {
     }
             
     @Override
-    public Collection<Admin> getAllAdmin() {
+    public List<Admin> getAllAdmin() {
         return em.createNamedQuery("Admin.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<Admin> getAdminById(Integer aid) {
+        return em.createNamedQuery("Admin.findByAid").setParameter("aid", aid).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Admin> getAdminbyName(String aname) {
+         return em.createNamedQuery("Admin.findByAname").setParameter("aname", aname).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
 
 //    blog
     @Override
@@ -147,10 +178,30 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public Collection<Blog> getAllBlog() {
+    public List<Blog> getAllBlog() {
         return em.createNamedQuery("Blog.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<Blog> getBlogByid(Integer blog_id) {
+        return em.createNamedQuery("Blog.findByBlogId").setParameter("blogId", blog_id).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Blog> getBlogByTitle(String title) {
+        return em.createNamedQuery("Blog.findByTitle").setParameter("title", title).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Blog> getBlogByTag(String tags) {
+        return em.createNamedQuery("Blog.findByTags").setParameter("tags", tags).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
 
 //    brand
 
@@ -187,10 +238,17 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public Collection<Brand> getAllBrands() {
+    public List<Brand> getAllBrands() {
         return em.createNamedQuery("Brand.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<Brand> getBrandByBname(String bname) {
+        return em.createNamedQuery("Brand.findByBname").setParameter("bname", bname).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }   
+    
     
 //    category
 
@@ -221,10 +279,18 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public Collection<Category> getAllCategories() {
+    public List<Category> getAllCategories() {
         return em.createNamedQuery("Category.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<Category> getCategoryByCname(String cname) {
+        return em.createNamedQuery("Category.findByCname").setParameter("cname", cname).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
     
 //    medicine
 
@@ -239,8 +305,8 @@ public class admin implements adminLocal {
         m.setPrice(price);
         m.setQuantity(quantity);
         m.setAvailability(availability);
-        b.setBid(bid);
-        c.setCatId(cat_id);
+        m.setBid(b);
+        m.setCatId(c);
         em.persist(m);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -256,8 +322,8 @@ public class admin implements adminLocal {
         m.setPrice(price);
         m.setQuantity(quantity);
         m.setAvailability(availability);
-        b.setBid(bid);
-        c.setCatId(cat_id);
+        m.setBid(b);
+        m.setCatId(c);
         em.merge(m);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -272,10 +338,23 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public Collection<Medicine> getAllMedicines() {
+    public List<Medicine> getAllMedicines() {
         return em.createNamedQuery("Medicine.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<Medicine> getMedicineByMname(String mname) {
+        return em.createNamedQuery("Medicine.findByMname").setParameter("mname", mname).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Medicine> getMediByAvailability(String availability) {
+        return em.createNamedQuery("Medicine.findByAvailability").setParameter("availability", availability).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
     
 //    Cart item
 
@@ -284,10 +363,16 @@ public class admin implements adminLocal {
         Cart c = (Cart) em.find(Cart.class, cartid);
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         CartItem ct = new CartItem();
-        c.setCartid(cartid);
-        m.setMid(mid);
+        ct.setCartid(c);
+        ct.setMid(m);
         ct.setQuantity(quantity);
         ct.setPrice(price);
+        
+        c.getCartItemCollection().add(ct);
+        m.getCartItemCollection().add(ct);
+        
+        em.merge(c);
+        em.merge(m);
         em.persist(ct);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -298,8 +383,8 @@ public class admin implements adminLocal {
         Cart c = (Cart) em.find(Cart.class, cartid);
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         ct.setCartItemId(cart_item_id);
-        c.setCartid(cartid);
-        m.setMid(mid);
+        ct.setCartid(c);
+        ct.setMid(m);
         ct.setQuantity(quantity);
         ct.setPrice(price);
         em.merge(ct);
@@ -316,7 +401,7 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public Collection<CartItem> getAllCartItems() {
+    public List<CartItem> getAllCartItems() {
         return em.createNamedQuery("CartItem.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -327,7 +412,7 @@ public class admin implements adminLocal {
     public void addOrderManage(Integer oid, String status, Timestamp timestamp) {
         Order1 or = (Order1) em.find(Order1.class, oid);
         OrderManage om = new OrderManage();
-        or.setOid(oid);
+        om.setOid(or);
         om.setStatus(status);
         om.setTimestamp(timestamp);
         em.persist(om);
@@ -338,7 +423,7 @@ public class admin implements adminLocal {
     public void updateOrderManage(Integer manage_id, Integer oid, String status, Timestamp timestamp) {
         OrderManage om = (OrderManage) em.find(OrderManage.class, manage_id);
         Order1 or = (Order1) em.find(Order1.class, oid);
-        or.setOid(oid);
+        om.setOid(or);
         om.setStatus(status);
         om.setTimestamp(timestamp);
         em.merge(om);
@@ -354,10 +439,18 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public Collection<OrderManage> getAllOrderManages() {
+    public List<OrderManage> getAllOrderManages() {
         return em.createNamedQuery("OrderManage.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<OrderManage> getStatus(String status) {
+        return em.createNamedQuery("OrderManage.findByStatus").setParameter("status", status).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
     
 //    inventory manage
 
@@ -366,8 +459,8 @@ public class admin implements adminLocal {
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         Admin ad = (Admin) em.find(Admin.class, managed_by);
         InventoryManage im = new InventoryManage();
-        m.setMid(mid);
-        im.setQuantity(0);
+        im.setMid(m);
+        im.setQuantity(quantity);
         im.setActionDate(action_date);
         im.setManagedBy(ad);
         im.setNotes(notes);
@@ -381,7 +474,7 @@ public class admin implements adminLocal {
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         Admin ad = (Admin) em.find(Admin.class, managed_by);        
         im.setInventoryId(inventory_id);
-        m.setMid(mid);
+        im.setMid(m);
         im.setQuantity(quantity);
         im.setActionDate(action_date);
         im.setManagedBy(ad);
@@ -399,11 +492,86 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public Collection<InventoryManage> getAllInventories() {
+    public List<InventoryManage> getAllInventories() {
         return em.createNamedQuery("InventoryManage.findAll").getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public Collection<InventoryManage> getInventoryByAction(String action) {
+        return em.createNamedQuery("InventoryManage.findByAction").setParameter("action", action).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
+    
+//    user data
+
+    @Override
+    public List<UserMst> getAllUsers() {
+        return em.createNamedQuery("UserMst.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<UserMst> getUserByUname(String uname) {
+        return em.createNamedQuery("UserMst.findByUname").setParameter("uname", uname).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<UserMst> getUserByEmail(String email) {
+        return em.createNamedQuery("UserMst.findByEmail").setParameter("email", email).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+//    detail form of user
+    
+    @Override
+    public List<Form> getAllForm() {
+        return em.createNamedQuery("Form.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Form> getFormByFormId(Integer form_id) {
+        return em.createNamedQuery("Form.findByFormId").setParameter("formId", form_id).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Form> getFormByFname(String fname) {
+        return em.createNamedQuery("Form.findByFname").setParameter("fname", fname).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
+    
+//    feedback of users
+
+    @Override
+    public Collection<Feedback> getAllFeedback() {
+        return em.createNamedQuery("Feedback.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Feedback> getFeedbackByFid(Integer fid) {
+        return em.createNamedQuery("Feedback.findByFid").setParameter("fid", fid).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+//    order by user
+    @Override
+    public List<Order1> getAllOrders() {
+        return em.createNamedQuery("Order1.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Collection<Order1> getOrderByOid(Integer oid) {
+        return em.createNamedQuery("Order1.findByOid").setParameter("oid", oid).getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

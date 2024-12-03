@@ -19,7 +19,7 @@ import java.util.Date;
 
 /**
  *
- * @author 1
+ * @author abhaya
  */
 @Local
 public interface userLocal {
@@ -27,7 +27,7 @@ public interface userLocal {
     void addUserMst(String uname, String email, String password, String address, Integer rid);
     void updateUserMst(Integer uid, String uname, String email, String password, String address, Integer rid);
     void deleteUserMst(Integer uid, Integer rid);
-    Collection<UserMst> getAllUsers();
+//    Collection<UserMst> getAllUsers();
     
     //cart table
     void addCart(Integer uid, Timestamp created_at, Timestamp updated_at, String status);
@@ -38,14 +38,12 @@ public interface userLocal {
 //    form
     void addForm(Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address);
     void updateForm(Integer form_id, Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address);
-    void deleteForm(Integer form_id, Integer uid);
-    Collection<Form> getAllForm();
+    void deleteForm(Integer form_id, Integer uid);    
     
 //    feedback
     void addFeddback(Integer uid, Integer rating, String comments, Date feedback_date);
     void updateFeedback(Integer fid, Integer uid, Integer rating, String comments, Date feedback_date);
-    void deleteFeedback(Integer fid, Integer uid);
-    Collection<Feedback> getAllFeedback();
+    void deleteFeedback(Integer fid, Integer uid);    
     
 //    Order1
     void addOrder(Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method);

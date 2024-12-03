@@ -53,7 +53,7 @@ public class Feedback implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "feedback_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date feedbackDate;
     @JoinColumn(name = "uid", referencedColumnName = "uid")
     @ManyToOne
