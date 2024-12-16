@@ -197,10 +197,10 @@ public class adminServlet extends HttpServlet {
             out.print("</div>");
             
             
-           Timestamp created_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 15, 14, 30, 0));
-            Timestamp updated_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 15, 15, 45, 0));
-//            ad.addBlog(1, "Happiness", "Happiness boosts health and longevity!!", "published", created_at, updated_at, "Health");            
-//            ad.updateBlog(2, 1, "Sadness", "Sadness harms health, increasing stress levels!!", "published", created_at, updated_at, "Health");
+//           Timestamp created_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 15, 14, 30, 0));
+//            Timestamp updated_at = Timestamp.valueOf(LocalDateTime.of(2024, 11, 15, 15, 45, 0));
+//            ad.addBlog(1, "Happiness", "Happiness boosts health and longevity!!", "published", "Health");            
+//            ad.updateBlog(4, 1, "Sadness", "Sadness harms health, increasing stress levels!!", "published", "Health");
 //            ad.deleteBlog(3, 1);
         
 
@@ -223,13 +223,13 @@ public class adminServlet extends HttpServlet {
                 out.println("<tr>");
                 out.println("<td>" + brand.getBid() + "</td>");
                 out.println("<td>" + brand.getBname() + "</td>");
-
-                if (brand.getBimg() != null) {
-                    String base64Image = Base64.getEncoder().encodeToString(brand.getBimg());
-                    out.println("<td><img src='data:image/png;base64," + base64Image + "' width='150' height='110'></td>");
-                } else {
-                    out.println("<td>No Image</td>");
-                }
+                out.println("<td>" + brand.getBimg()+ "</td>");
+//                if (brand.getBimg() != null) {
+//                    String base64Image = Base64.getEncoder().encodeToString(brand.getBimg());
+//                    out.println("<td><img src='data:image/png;base64," + base64Image + "' width='150' height='110'></td>");
+//                } else {
+//                    out.println("<td>No Image</td>");
+//                }
 
                 out.println("<td>" + brand.getManufacturer() + "</td>");
                 out.println("<td>" + brand.getCountryOrigin() + "</td>");
@@ -314,14 +314,15 @@ public class adminServlet extends HttpServlet {
                 out.println("<tr>");
                 out.println("<td>" + medicine.getMid() + "</td>");
                 out.println("<td>" + medicine.getMname() + "</td>");
+                out.println("<td>" + medicine.getImg()+ "</td>");
 
                 // Display image as Base64 encoded string
-                if (medicine.getImg() != null) {
-                    String base64Image = Base64.getEncoder().encodeToString(medicine.getImg());
-                    out.println("<td><img src='data:cat_imgs/png;base64," + base64Image + "' width='100' height='130'></td>");
-                } else {
-                    out.println("<td>No Image</td>");
-                }
+//                if (medicine.getImg() != null) {
+//                    String base64Image = Base64.getEncoder().encodeToString(medicine.getImg());
+//                    out.println("<td><img src='data:cat_imgs/png;base64," + base64Image + "' width='100' height='130'></td>");
+//                } else {
+//                    out.println("<td>No Image</td>");
+//                }
 
                 out.println("<td>" + medicine.getDescription() + "</td>");
                 out.println("<td>" + medicine.getPrice() + "</td>");
@@ -435,10 +436,10 @@ public class adminServlet extends HttpServlet {
             out.print("</div>");
            
 //            Timestamp timestamp = Timestamp.valueOf(LocalDateTime.of(2024, 9, 5, 9, 20));
-//            ad.addOrderManage(1, "processing", timestamp);
+//            ad.addOrderManage(1, "processing");
 //            ad.addOrderManage(1, "Processing", new Timestamp(System.currentTimeMillis()));
 //            ad.addOrderManage(2, "shipped", Timestamp.valueOf("2024-11-16 10:00:00"));
-//            ad.updateOrderManage(2, 1, "shipped", timestamp);
+//            ad.updateOrderManage(11, 1, "shipped");
 //            ad.deleteOrderManage(5, 1);
 
 //            inventory manage
@@ -479,10 +480,10 @@ public class adminServlet extends HttpServlet {
             }
             out.print("</div>");
             
-//            ad.addInventory(1, 7, "add", Timestamp.valueOf("2024-11-16 10:00:00"), 1, "Restocked with new supply");
-//            ad.addInventory(2, 10, "remove", Timestamp.valueOf("2024-11-16 10:00:00"), 1, "Removed stock.");
+//            ad.addInventory(6, 3, "add", 2, "Item Added");
+//            ad.addInventory(2, 10, "remove", 1, "Removed stock.");
             
-//            ad.updateInventory(2, 1, 20, "Removed Stock", Timestamp.valueOf("2024-11-16 12:00:00"), 1, "Adjusted due to damaged items.");
+//            ad.updateInventory(2, 1, 20, "Removed Stock", 1, "Adjusted due to damaged items.");
 //            ad.deleteInventory(3, 3);
 
 

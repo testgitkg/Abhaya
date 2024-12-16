@@ -42,30 +42,32 @@ import java.util.Date;
     @NamedQuery(name = "Form.findByAddress", query = "SELECT f FROM Form f WHERE f.address = :address")})
 public class Form implements Serializable {
 
+    @Size(max = 100)
+    @Column(name = "fname")
+    private String fname;
+    @Size(max = 10)
+    @Column(name = "gender")
+    private String gender;
+    @Size(max = 255)
+    @Column(name = "address")
+    private String address;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "form_id")
     private Integer formId;
-    @Size(max = 100)
-    @Column(name = "fname")
-    private String fname;
     @Column(name = "mno")
     private BigInteger mno;
-    @Size(max = 10)
-    @Column(name = "gender")
-    private String gender;
+    @Size(max = 100)
     @Column(name = "dob")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
+//    @Temporal(TemporalType.DATE)
+    private String dob;
     @Column(name = "height")
     private Integer height;
     @Column(name = "weight")
     private Integer weight;
-    @Size(max = 255)
-    @Column(name = "address")
-    private String address;
     @JoinColumn(name = "uid", referencedColumnName = "uid")
     @ManyToOne
     private UserMst uid;
@@ -85,13 +87,6 @@ public class Form implements Serializable {
         this.formId = formId;
     }
 
-    public String getFname() {
-        return fname;
-    }
-
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
 
     public BigInteger getMno() {
         return mno;
@@ -101,19 +96,12 @@ public class Form implements Serializable {
         this.mno = mno;
     }
 
-    public String getGender() {
-        return gender;
-    }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -133,13 +121,6 @@ public class Form implements Serializable {
         this.weight = weight;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public UserMst getUid() {
         return uid;
@@ -172,6 +153,30 @@ public class Form implements Serializable {
     @Override
     public String toString() {
         return "entity.Form[ formId=" + formId + " ]";
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
     
 }

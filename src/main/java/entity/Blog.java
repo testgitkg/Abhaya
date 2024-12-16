@@ -41,12 +41,6 @@ import java.util.Date;
     @NamedQuery(name = "Blog.findByTags", query = "SELECT b FROM Blog b WHERE b.tags = :tags")})
 public class Blog implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "blog_id")
-    private Integer blogId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
@@ -74,6 +68,13 @@ public class Blog implements Serializable {
     @Size(max = 255)
     @Column(name = "tags")
     private String tags;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "blog_id")
+    private Integer blogId;
     @JoinColumn(name = "aid", referencedColumnName = "aid")
     @ManyToOne(optional = false)
     private Admin aid;
@@ -101,29 +102,6 @@ public class Blog implements Serializable {
         this.blogId = blogId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -141,13 +119,6 @@ public class Blog implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
 
     public Admin getAid() {
         return aid;
@@ -180,6 +151,38 @@ public class Blog implements Serializable {
     @Override
     public String toString() {
         return "entity.Blog[ blogId=" + blogId + " ]";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
     
 }

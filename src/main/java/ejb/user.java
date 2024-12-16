@@ -45,6 +45,10 @@ public class user implements userLocal {
         um.setPassword(password);
         um.setAddress(address);
         um.setRid(r);
+        
+        r.getUserMstCollection().add(um);
+        
+        em.merge(r);
         em.persist(um);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -67,38 +71,42 @@ public class user implements userLocal {
     public void deleteUserMst(Integer uid,Integer rid) {
         Role r = (Role) em.find(Role.class, rid);
         UserMst um = (UserMst) em.find(UserMst.class, uid);
+        
+        r.getUserMstCollection().remove(um);
+        
+        em.merge(r);
         em.remove(um);
         
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-//    @Override
-//    public List<UserMst> getAllUsers() {
-//        return em.createNamedQuery("UserMst.findAll").getResultList();
-////        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
+    @Override
+    public Collection<UserMst> getAllUsers() {
+        return em.createNamedQuery("UserMst.findAll").getResultList();
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 //    Cart table
     @Override
-    public void addCart(Integer uid, Timestamp created_at, Timestamp updated_at, String status) {
+    public void addCart(Integer uid, String status) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Cart c = new Cart();
         c.setUid(um);
-        c.setCreatedAt(created_at);
-        c.setUpdatedAt(updated_at);
+        c.setCreatedAt(new Date());
+        c.setUpdatedAt(new Date());
         c.setStatus(status);
         em.persist(c);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void updateCart(Integer cartid, Integer uid, Timestamp created_at, Timestamp updated_at, String status) {
+    public void updateCart(Integer cartid, Integer uid, String status) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Cart c = (Cart) em.find(Cart.class, cartid);
         c.setCartid(cartid);
         c.setUid(um);
-        c.setCreatedAt(created_at);
-        c.setUpdatedAt(updated_at);
+        c.setCreatedAt(new Date());
+        c.setUpdatedAt(new Date());
         c.setStatus(status);
         em.merge(c);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -121,7 +129,7 @@ public class user implements userLocal {
 //    Form table
 
     @Override
-    public void addForm(Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address) {
+    public void addForm(Integer uid, String fname, BigInteger mno, String gender, String dob, Integer height, Integer weight, String address) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Form f = new Form();
         f.setUid(um);
@@ -132,12 +140,16 @@ public class user implements userLocal {
         f.setHeight(height);
         f.setWeight(weight);
         f.setAddress(address);
+        
+        um.getFormCollection().add(f);
+        
+        em.merge(f);
         em.persist(f);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void updateForm(Integer form_id, Integer uid, String fname, BigInteger mno, String gender, Date dob, Integer height, Integer weight, String address) {
+    public void updateForm(Integer form_id, Integer uid, String fname, BigInteger mno, String gender, String dob, Integer height, Integer weight, String address) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Form f = (Form) em.find(Form.class, form_id);
         f.setFormId(form_id);
@@ -157,6 +169,10 @@ public class user implements userLocal {
     public void deleteForm(Integer form_id, Integer uid) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Form f = (Form) em.find(Form.class, form_id);
+        
+        um.getFormCollection().remove(f);
+        
+        em.merge(f);
         em.remove(f);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }  
@@ -165,26 +181,30 @@ public class user implements userLocal {
 //    feedback table
 
     @Override
-    public void addFeddback(Integer uid, Integer rating, String comments, Date feedback_date) {
+    public void addFeddback(Integer uid, Integer rating, String comments) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Feedback fd = new Feedback();
         fd.setUid(um);
         fd.setRating(rating);
         fd.setComments(comments);
-        fd.setFeedbackDate(feedback_date);
+        fd.setFeedbackDate(new Date());
+        
+        um.getFeedbackCollection().add(fd);
+        
+        em.merge(um);
         em.persist(fd);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void updateFeedback(Integer fid, Integer uid, Integer rating, String comments, Date feedback_date) {
+    public void updateFeedback(Integer fid, Integer uid, Integer rating, String comments) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Feedback fd = (Feedback) em.find(Feedback.class, fid);
         fd.setFid(fid);
         fd.setUid(um);
         fd.setRating(rating);
         fd.setComments(comments);
-        fd.setFeedbackDate(feedback_date);
+        fd.setFeedbackDate(new Date());
         em.merge(fd);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -193,6 +213,10 @@ public class user implements userLocal {
     public void deleteFeedback(Integer fid, Integer uid) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Feedback fd = (Feedback) em.find(Feedback.class, fid);
+        
+        um.getFeedbackCollection().remove(fd);
+        
+        em.merge(um);
         em.remove(fd);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -200,27 +224,31 @@ public class user implements userLocal {
 
 //    order 
     @Override
-    public void addOrder(Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method) {
+    public void addOrder(Integer uid, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Order1 or = new Order1();
         or.setUid(um);
-        or.setOrderDate(order_date);
+        or.setOrderDate(new Date());
         or.setStatus(status);
         or.setTotalAmt(total_amt);
         or.setShippingAdd(shipping_add);;
         or.setPaymentStatus(payment_status);
         or.setPaymentMethod(payment_method);
+        
+        um.getOrder1Collection().add(or);
+        
+        em.merge(um);
         em.persist(or);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void updateOrder(Integer oid, Integer uid, Date order_date, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method) {
+    public void updateOrder(Integer oid, Integer uid, String status, BigDecimal total_amt, String shipping_add, String payment_status, String payment_method) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Order1 or = (Order1) em.find(Order1.class, oid);
         or.setOid(oid);
         or.setUid(um);
-        or.setOrderDate(order_date);
+        or.setOrderDate(new Date());
         or.setStatus(status);
         or.setTotalAmt(total_amt);
         or.setShippingAdd(shipping_add);;
@@ -234,6 +262,10 @@ public class user implements userLocal {
     public void deleteOrder(Integer oid, Integer uid) {
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         Order1 or = (Order1) em.find(Order1.class, oid);
+        
+        um.getOrder1Collection().remove(or);
+        
+        em.merge(um);
         em.remove(or);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -258,6 +290,12 @@ public class user implements userLocal {
         ot.setQuantity(quantity);
         ot.setPrice(price);
         ot.setTotalAmt(total_amt);
+        
+        or.getOrderItemCollection().add(ot);
+        m.getOrderItemCollection().add(ot);
+        
+        em.merge(or);
+        em.merge(m);
         em.persist(ot);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -282,6 +320,12 @@ public class user implements userLocal {
         Order1 or = (Order1) em.find(Order1.class, oid);
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         OrderItem ot = (OrderItem) em.find(OrderItem.class, order_item_id);
+        
+        or.getOrderItemCollection().remove(ot);
+        m.getOrderItemCollection().remove(ot);
+        
+        em.merge(or);
+        em.merge(m);
         em.remove(ot);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

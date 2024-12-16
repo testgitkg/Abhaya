@@ -4,8 +4,8 @@
  */
 package entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -51,8 +51,9 @@ public class Medicine implements Serializable {
     @Column(name = "mname")
     private String mname;
     @Lob
+    @Size(max = 65535)
     @Column(name = "img")
-    private byte[] img;
+    private String img;
     @Size(max = 255)
     @Column(name = "description")
     private String description;
@@ -64,13 +65,14 @@ public class Medicine implements Serializable {
     @Size(max = 50)
     @Column(name = "availability")
     private String availability;
+    @JsonbTransient
     @JoinColumn(name = "bid", referencedColumnName = "bid")
     @ManyToOne
     private Brand bid;
     @JoinColumn(name = "cat_id", referencedColumnName = "cat_id")
     @ManyToOne
     private Category catId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "mid")
+    @OneToMany(mappedBy = "mid")
     private Collection<InventoryManage> inventoryManageCollection;
     @OneToMany(mappedBy = "mid")
     private Collection<OrderItem> orderItemCollection;
@@ -100,11 +102,11 @@ public class Medicine implements Serializable {
         this.mname = mname;
     }
 
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
@@ -156,7 +158,7 @@ public class Medicine implements Serializable {
         this.catId = catId;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<InventoryManage> getInventoryManageCollection() {
         return inventoryManageCollection;
     }
@@ -165,7 +167,7 @@ public class Medicine implements Serializable {
         this.inventoryManageCollection = inventoryManageCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<OrderItem> getOrderItemCollection() {
         return orderItemCollection;
     }
@@ -174,7 +176,7 @@ public class Medicine implements Serializable {
         this.orderItemCollection = orderItemCollection;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<CartItem> getCartItemCollection() {
         return cartItemCollection;
     }

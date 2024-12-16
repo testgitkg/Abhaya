@@ -38,14 +38,6 @@ import java.util.Date;
     @NamedQuery(name = "Feedback.findByFeedbackDate", query = "SELECT f FROM Feedback f WHERE f.feedbackDate = :feedbackDate")})
 public class Feedback implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "fid")
-    private Integer fid;
-    @Column(name = "rating")
-    private Integer rating;
     @Lob
     @Size(max = 65535)
     @Column(name = "comments")
@@ -55,6 +47,15 @@ public class Feedback implements Serializable {
     @Column(name = "feedback_date")
     @Temporal(TemporalType.DATE)
     private Date feedbackDate;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "fid")
+    private Integer fid;
+    @Column(name = "rating")
+    private Integer rating;
     @JoinColumn(name = "uid", referencedColumnName = "uid")
     @ManyToOne
     private UserMst uid;
@@ -87,13 +88,6 @@ public class Feedback implements Serializable {
         this.rating = rating;
     }
 
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
 
     public Date getFeedbackDate() {
         return feedbackDate;
@@ -134,6 +128,14 @@ public class Feedback implements Serializable {
     @Override
     public String toString() {
         return "entity.Feedback[ fid=" + fid + " ]";
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
     
 }

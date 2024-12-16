@@ -57,14 +57,14 @@ public class InventoryManage implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "action_date")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date actionDate;
     @Lob
     @Size(max = 65535)
     @Column(name = "notes")
     private String notes;
     @JoinColumn(name = "mid", referencedColumnName = "mid")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Medicine mid;
     @JoinColumn(name = "managed_by", referencedColumnName = "aid")
     @ManyToOne

@@ -4,6 +4,7 @@
  */
 package entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -51,6 +52,7 @@ public class OrderManage implements Serializable {
     @Column(name = "timestamp")
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
+    @JsonbTransient
     @JoinColumn(name = "oid", referencedColumnName = "oid")
     @ManyToOne
     private Order1 oid;

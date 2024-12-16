@@ -4,6 +4,7 @@
  */
 package entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,18 +35,19 @@ import java.util.Collection;
     @NamedQuery(name = "Category.findByDescription", query = "SELECT c FROM Category c WHERE c.description = :description")})
 public class Category implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "cat_id")
-    private Integer catId;
     @Size(max = 100)
     @Column(name = "cname")
     private String cname;
     @Size(max = 255)
     @Column(name = "description")
     private String description;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "cat_id")
+    private Integer catId;
     @OneToMany(mappedBy = "catId")
     private Collection<Medicine> medicineCollection;
 
@@ -64,23 +66,8 @@ public class Category implements Serializable {
         this.catId = catId;
     }
 
-    public String getCname() {
-        return cname;
-    }
 
-    public void setCname(String cname) {
-        this.cname = cname;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @XmlTransient
+    @JsonbTransient
     public Collection<Medicine> getMedicineCollection() {
         return medicineCollection;
     }
@@ -112,6 +99,22 @@ public class Category implements Serializable {
     @Override
     public String toString() {
         return "entity.Category[ catId=" + catId + " ]";
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
 }

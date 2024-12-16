@@ -4,6 +4,7 @@
  */
 package entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,8 +48,9 @@ public class Brand implements Serializable {
     @Column(name = "bname")
     private String bname;
     @Lob
+    @Size(max = 65535)
     @Column(name = "bimg")
-    private byte[] bimg;
+    private String bimg;
     @Size(max = 100)
     @Column(name = "manufacturer")
     private String manufacturer;
@@ -84,11 +86,11 @@ public class Brand implements Serializable {
         this.bname = bname;
     }
 
-    public byte[] getBimg() {
+    public String getBimg() {
         return bimg;
     }
 
-    public void setBimg(byte[] bimg) {
+    public void setBimg(String bimg) {
         this.bimg = bimg;
     }
 
@@ -116,7 +118,7 @@ public class Brand implements Serializable {
         this.siteUrl = siteUrl;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<Medicine> getMedicineCollection() {
         return medicineCollection;
     }

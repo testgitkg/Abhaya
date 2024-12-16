@@ -4,6 +4,7 @@
  */
 package entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,12 +42,6 @@ import java.util.Date;
     @NamedQuery(name = "Cart.findByStatus", query = "SELECT c FROM Cart c WHERE c.status = :status")})
 public class Cart implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "cartid")
-    private Integer cartid;
     @Basic(optional = false)
     @NotNull
     @Column(name = "created_at")
@@ -60,6 +55,13 @@ public class Cart implements Serializable {
     @Size(max = 9)
     @Column(name = "status")
     private String status;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "cartid")
+    private Integer cartid;
     @JoinColumn(name = "uid", referencedColumnName = "uid")
     @ManyToOne
     private UserMst uid;
@@ -103,13 +105,6 @@ public class Cart implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public UserMst getUid() {
         return uid;
@@ -119,7 +114,7 @@ public class Cart implements Serializable {
         this.uid = uid;
     }
 
-    @XmlTransient
+    @JsonbTransient
     public Collection<CartItem> getCartItemCollection() {
         return cartItemCollection;
     }
@@ -151,6 +146,14 @@ public class Cart implements Serializable {
     @Override
     public String toString() {
         return "entity.Cart[ cartid=" + cartid + " ]";
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

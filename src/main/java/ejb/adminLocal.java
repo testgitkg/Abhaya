@@ -45,8 +45,8 @@ public interface adminLocal {
     Collection<Admin> getAdminbyName(String aname);
     
     //blog detail
-    void addBlog(Integer aid, String title, String content, String status, Timestamp created_at, Timestamp updated_at, String tags);
-    void updateBlog(Integer blog_id, Integer aid, String title, String content, String status, Timestamp created_at, Timestamp updated_at, String tags);
+    void addBlog(Integer aid, String title, String content, String status, String tags);
+    void updateBlog(Integer blog_id, Integer aid, String title, String content, String status, String tags);
     void deleteBlog(Integer blog_id, Integer aid);
     Collection<Blog> getAllBlog();
     Collection<Blog> getBlogByid(Integer blog_id);
@@ -54,8 +54,8 @@ public interface adminLocal {
     Collection<Blog> getBlogByTag(String tags);
     
     //brand
-    void addBrand(String bname, byte[] img, String manufacturer, String country_origin, String site_url);
-    void updateBrand(Integer bid, String bname, byte[] img, String manufacturer, String country_origin, String site_url);
+    void addBrand(String bname, String img, String manufacturer, String country_origin, String site_url);
+    void updateBrand(Integer bid, String bname, String img, String manufacturer, String country_origin, String site_url);
     void deleteBrand(Integer bid);
     Collection<Brand> getAllBrands();
     Collection<Brand> getBrandByBname(String bname);
@@ -69,8 +69,8 @@ public interface adminLocal {
     Collection<Category> getCategoryByCname(String cname);
     
     //medicine
-    void addMedicine(String mname, byte[] img, String description, Integer price, String quantity, String availability, Integer bid, Integer cat_id);
-    void updateMedicine(Integer mid, String mname, byte[] img, String description, Integer price, String quantity, String availability, Integer bid, Integer cat_id);
+    void addMedicine(String mname, String img, String description, Integer price, String quantity, String availability, Integer bid, Integer cat_id);
+    void updateMedicine(Integer mid, String mname, String img, String description, Integer price, String quantity, String availability, Integer bid, Integer cat_id);
     void deleteMedicine(Integer mid, Integer bid, Integer cat_id);
     Collection<Medicine> getAllMedicines();
     Collection<Medicine> getMedicineByMname(String mname);
@@ -83,15 +83,15 @@ public interface adminLocal {
     Collection<CartItem> getAllCartItems();
     
     // order manage
-    void addOrderManage(Integer oid, String status, Timestamp timestamp);
-    void updateOrderManage(Integer manage_id, Integer oid, String status, Timestamp timestamp);
+    void addOrderManage(Integer oid, String status);
+    void updateOrderManage(Integer manage_id, Integer oid, String status);
     void deleteOrderManage(Integer manage_id, Integer oid);
     Collection<OrderManage> getAllOrderManages();
     Collection<OrderManage> getStatus(String status);
     
     // inventory manage
-    void addInventory(Integer mid, Integer quantity, String action, Timestamp action_date, Integer managed_by, String notes);
-    void updateInventory(Integer inventory_id, Integer mid, Integer quantity, String action, Timestamp action_date, Integer managed_by, String notes);
+    void addInventory(Integer mid, Integer quantity, String action, Integer managed_by, String notes);
+    void updateInventory(Integer inventory_id, Integer mid, Integer quantity, String action, Integer managed_by, String notes);
     void deleteInventory(Integer inventory_id, Integer mid);
     Collection<InventoryManage> getAllInventories();
     Collection<InventoryManage> getInventoryByAction(String action);
@@ -113,4 +113,5 @@ public interface adminLocal {
     // order by user
     Collection<Order1> getAllOrders();
     Collection<Order1> getOrderByOid(Integer oid);
+    Collection<Order1> getOrderByStatus(String status);
 }

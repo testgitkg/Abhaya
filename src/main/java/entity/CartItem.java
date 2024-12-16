@@ -4,6 +4,7 @@
  */
 package entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,9 +45,11 @@ public class CartItem implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "price")
     private BigDecimal price;
+    @JsonbTransient
     @JoinColumn(name = "cartid", referencedColumnName = "cartid")
     @ManyToOne
     private Cart cartid;
+    @JsonbTransient
     @JoinColumn(name = "mid", referencedColumnName = "mid")
     @ManyToOne
     private Medicine mid;
