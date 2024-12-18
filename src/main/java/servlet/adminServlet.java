@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import client.adminClient;
 import ejb.adminLocal;
 import entity.Admin;
 import entity.Blog;
@@ -27,9 +28,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.Collection;
 
 /**
@@ -40,6 +38,7 @@ import java.util.Collection;
 public class adminServlet extends HttpServlet {
     
     @EJB adminLocal ad;
+    adminClient ac;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -658,6 +657,7 @@ public class adminServlet extends HttpServlet {
             }
             out.print("</div>");
             
+            ac.addRole("kuuahiREST");
             
 
 //            out.println("<h1>Servlet adminServlet at " + request.getContextPath() + "</h1>");

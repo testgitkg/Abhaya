@@ -13,11 +13,14 @@
 
             <h:form>
                 <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">                  
+                <h:panelGrid columns="2" border="1">
+                    <h:outputLabel value="Rid:" for="rid" />
+                    <h:inputText id="rid" value="#{roleCdi.r.rid}" title="Rid" required="true" requiredMessage="The Rid field is required."/>
                     <h:outputLabel value="RoleName:" for="roleName" />
-                    <h:inputText id="roleName" value="#{adminCdi.r.roleName}" title="RoleName" required="true" requiredMessage="The RoleName field is required."/>
+                    <h:inputText id="roleName" value="#{roleCdi.r.roleName}" title="RoleName" required="true" requiredMessage="The RoleName field is required."/>
+                    <h:commandButton value="Update" action="#{roleCdi.updateRole(item.rid, item.role_name)}"/>
+                    <h:commandButton value="Reset" />
                 </h:panelGrid>
-                <h:commandButton value="insert" action="#{adminCdi.addRole()}"/>
             </h:form>
         </f:view>
 

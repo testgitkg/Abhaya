@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Insert Brand"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Bname:" for="bname" />
+                        <h:inputText id="bname" value="#{brandCdi.b.bname}" title="Bname" />
+                        <h:outputLabel value="Bimg:" for="bimg" />
+                        <h:inputTextarea rows="4" cols="30" id="bimg" value="#{brandCdi.b.bimg}" title="Bimg" />
+                        <h:outputLabel value="Manufacturer:" for="manufacturer" />
+                        <h:inputText id="manufacturer" value="#{brandCdi.b.manufacturer}" title="Manufacturer" />
+                        <h:outputLabel value="CountryOrigin:" for="countryOrigin" />
+                        <h:inputText id="countryOrigin" value="#{brandCdi.b.countryOrigin}" title="CountryOrigin" />
+                        <h:outputLabel value="SiteUrl:" for="siteUrl" />
+                        <h:inputText id="siteUrl" value="#{brandCdi.b.siteUrl}" title="SiteUrl" />
+                    </h:panelGrid> <br/>
+                    <h:commandButton value="Submit" action="#{brandCdi.addBrand()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

@@ -7,13 +7,44 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        
         <center>
         <f:view>
 
-            <!--<h3><h:link value="Insert" outcome="insert_user" /></h3>-->
+
             <h:form>
-                <h1><h:outputText value="User"/></h1>
-                <h:dataTable value="#{registerCdi.allUsers}" var="item" border="1">
+                <h1><h:outputText value="Form by User"/></h1>
+                <h:dataTable value="#{formCdi.allForm}" var="item" border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="FormId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.formId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Mno"/>
+                        </f:facet>
+                        <h:outputText value="#{item.mno}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Dob"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dob}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Height"/>
+                        </f:facet>
+                        <h:outputText value="#{item.height}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Weight"/>
+                        </f:facet>
+                        <h:outputText value="#{item.weight}"/>
+                    </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Uid"/>
@@ -22,27 +53,15 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Rid"/>
+                            <h:outputText value="Fname"/>
                         </f:facet>
-                        <h:outputText value="#{item.rid}"/>
+                        <h:outputText value="#{item.fname}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Uname"/>
+                            <h:outputText value="Gender"/>
                         </f:facet>
-                        <h:outputText value="#{item.uname}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Email"/>
-                        </f:facet>
-                        <h:outputText value="#{item.email}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Password"/>
-                        </f:facet>
-                        <h:outputText value="#{item.password}"/>
+                        <h:outputText value="#{item.gender}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -54,18 +73,12 @@
                         <f:facet name="header">
                             <h:outputText value="Action"/>
                         </f:facet>
-                        <h:commandButton value="Update" action="#{registerCdi.updateUserMst()}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Delete" action="#{registerCdi.deleteUser(item.uid, item.rid)}" onclick="return confirm('Are you sure to delete?(Y/N)')" />
+                        <h:commandButton value="Delete" action="#{formCdi.deleteForm(item.form_id, item.uid)}"/>
                     </h:column>
                 </h:dataTable>
             </h:form>
         </f:view>
-        </center>    
+        </center>
 
         
     </h:body>

@@ -7,18 +7,18 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        
         <center>
         <f:view>
-
-            <!--<h3><h:link value="Insert" outcome="insert_user" /></h3>-->
+            <h3><h:link value="Insert" outcome="adminInsert" /></h3>
             <h:form>
-                <h1><h:outputText value="User"/></h1>
-                <h:dataTable value="#{registerCdi.allUsers}" var="item" border="1">
+                <h1><h:outputText value="Admin List"/></h1>
+                <h:dataTable value="#{adminCdi.allAdmin}" var="item" border="1">
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Uid"/>
+                            <h:outputText value="Aid"/>
                         </f:facet>
-                        <h:outputText value="#{item.uid}"/>
+                        <h:outputText value="#{item.aid}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -28,9 +28,9 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Uname"/>
+                            <h:outputText value="Aname"/>
                         </f:facet>
-                        <h:outputText value="#{item.uname}"/>
+                        <h:outputText value="#{item.aname}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">
@@ -46,26 +46,21 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
-                            <h:outputText value="Address"/>
+                            <h:outputText value="Action"/>
                         </f:facet>
-                        <h:outputText value="#{item.address}"/>
+                        <h:commandButton value="Update" action="#{adminCdi.updateAdmin()}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="Action"/>
                         </f:facet>
-                        <h:commandButton value="Update" action="#{registerCdi.updateUserMst()}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Delete" action="#{registerCdi.deleteUser(item.uid, item.rid)}" onclick="return confirm('Are you sure to delete?(Y/N)')" />
+                        <h:commandButton value="Delete" action="#{adminCdi.deleteAdmin(item.aid, item.rid)}" />
                     </h:column>
                 </h:dataTable>
             </h:form>
         </f:view>
-        </center>    
+            
+        </center>
 
         
     </h:body>

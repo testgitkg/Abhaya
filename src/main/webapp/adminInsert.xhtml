@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create/Edit Admin"/></h1>
+                <h:panelGrid columns="2">                    
+                    <h:outputLabel value="Rid:" for="rid" />
+                    <h:selectOneMenu id="rid" value="#{adminCdi.a.rid}" title="Rid" >                        
+                        <f:selectItems value="#{roleCdi.allRoles}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Aname:" for="aname" />
+                    <h:inputText id="aname" value="#{adminCdi.a.aname}" title="Aname" />
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText id="email" value="#{adminCdi.a.email}" title="Email" />
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputText id="password" value="#{adminCdi.a.password}" title="Password" />
+                </h:panelGrid> <br/>
+                <h:commandButton value="Submit" action="#{adminCdi.addAdmin()}" />
+            </h:form>
+        </f:view>
+        </center>
+
+        
+    </h:body>
+</html>

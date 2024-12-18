@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit user"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Rid:" for="rid" />
+                    <h:inputText id="rid" value="#{roleCdi.u.rid}" title="Rid" />
+                    <!--<h:selectOneMenu id="rid" value="#{roleCdi.u.rid}" title="Rid" >-->
+                        <!-- TODO: update below reference to list of available items-->
+                        <!--<f:selectItems value="#{fixme}"/>-->
+                    <!--</h:selectOneMenu>-->
+                    <h:outputLabel value="Uname:" for="uname" />
+                    <h:inputText id="uname" value="#{registerCdi.u.uname}" title="Uname" />
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText id="email" value="#{registerCdi.u.email}" title="Email" />
+                    <h:outputLabel value="Password:" for="password" />
+                    <h:inputText id="password" value="#{registerCdi.u.password}" title="Password" />
+                    <h:outputLabel value="Address:" for="address" />
+                    <h:inputText id="address" value="#{registerCdi.u.address}" title="Address" />
+                </h:panelGrid>
+                
+                <h:commandButton value="Submit" action="#{registerCdi.addUserMst()}"/>
+            </h:form>
+        </f:view>
+
+        
+    </h:body>
+</html>
