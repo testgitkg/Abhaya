@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h3><h:link value="Insert" outcome="medicineInsert" /></h3>
+                <h:form>
+                    <h1><h:outputText value="Medicine"/></h1>
+                    <h:dataTable value="#{medicineCdi.allMedicine}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mname"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Img"/>
+                            </f:facet>
+                            <h:outputText value="#{item.img}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Price"/>
+                            </f:facet>
+                            <h:outputText value="#{item.price}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantity"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quantity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Availability"/>
+                            </f:facet>
+                            <h:outputText value="#{item.availability}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Bid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bid.bname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="CatId"/>
+                            </f:facet>
+                            <h:outputText value="#{item.catId.cname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Update" action="#{medicineCdi.redirectToUpdate()}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Delete" action="#{medicineCdi.deleteMedicine()}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

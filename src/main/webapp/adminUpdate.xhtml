@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Update"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Aid:" for="aid" />
+                        <h:inputText id="aid" value="#{adminCdi.a.aid}" title="Aid" required="true" requiredMessage="The Aid field is required."/>
+                        <h:outputLabel value="Rid:" for="rid" />
+                        <h:selectOneMenu id="rid" value="#{adminCdi.rid}" title="Rid" >
+                            <f:selectItems value="#{roleCdi.allRoles}" var="role" itemValue="#{role.rid}" itemLabel="#{role.roleName}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Aname:" for="aname" />
+                        <h:inputText id="aname" value="#{adminCdi.aname}" title="Aname" />
+                        <h:outputLabel value="Email:" for="email" />
+                        <h:inputText id="email" value="#{adminCdi.email}" title="Email" />
+                        <h:outputLabel value="Password:" for="password" />
+                        <h:inputText id="password" value="#{adminCdi.password}" title="Password" />
+                    </h:panelGrid>
+                    <h:commandButton value="Add" action="#{adminCdi.redirectToUpdate()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

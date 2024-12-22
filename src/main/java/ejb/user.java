@@ -68,13 +68,10 @@ public class user implements userLocal {
     }
 
     @Override
-    public void deleteUserMst(Integer uid,Integer rid) {
-        Role r = (Role) em.find(Role.class, rid);
+    public void deleteUserMst(Integer uid) {
+//        Role r = (Role) em.find(Role.class, rid);
         UserMst um = (UserMst) em.find(UserMst.class, uid);
         
-        r.getUserMstCollection().remove(um);
-        
-        em.merge(r);
         em.remove(um);
         
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -95,6 +92,9 @@ public class user implements userLocal {
         c.setCreatedAt(new Date());
         c.setUpdatedAt(new Date());
         c.setStatus(status);
+        
+        um.getCartCollection().add(c);
+        em.merge(um);
         em.persist(c);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -113,8 +113,8 @@ public class user implements userLocal {
     }
 
     @Override
-    public void deleteCart(Integer cartid, Integer uid) {
-        UserMst um = (UserMst) em.find(UserMst.class, uid);
+    public void deleteCart(Integer cartid) {
+//        UserMst um = (UserMst) em.find(UserMst.class, uid);
         Cart c = (Cart) em.find(Cart.class, cartid);
         em.remove(c);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -143,7 +143,7 @@ public class user implements userLocal {
         
         um.getFormCollection().add(f);
         
-        em.merge(f);
+        em.merge(um);
         em.persist(f);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -166,13 +166,10 @@ public class user implements userLocal {
     }
 
     @Override
-    public void deleteForm(Integer form_id, Integer uid) {
-        UserMst um = (UserMst) em.find(UserMst.class, uid);
+    public void deleteForm(Integer form_id) {
+//        UserMst um = (UserMst) em.find(UserMst.class, uid);
         Form f = (Form) em.find(Form.class, form_id);
         
-        um.getFormCollection().remove(f);
-        
-        em.merge(f);
         em.remove(f);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }  
@@ -210,13 +207,10 @@ public class user implements userLocal {
     }
 
     @Override
-    public void deleteFeedback(Integer fid, Integer uid) {
-        UserMst um = (UserMst) em.find(UserMst.class, uid);
+    public void deleteFeedback(Integer fid) {
+//        UserMst um = (UserMst) em.find(UserMst.class, uid);
         Feedback fd = (Feedback) em.find(Feedback.class, fid);
         
-        um.getFeedbackCollection().remove(fd);
-        
-        em.merge(um);
         em.remove(fd);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -259,13 +253,10 @@ public class user implements userLocal {
     }
 
     @Override
-    public void deleteOrder(Integer oid, Integer uid) {
-        UserMst um = (UserMst) em.find(UserMst.class, uid);
+    public void deleteOrder(Integer oid) {
+//        UserMst um = (UserMst) em.find(UserMst.class, uid);
         Order1 or = (Order1) em.find(Order1.class, oid);
         
-        um.getOrder1Collection().remove(or);
-        
-        em.merge(um);
         em.remove(or);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -316,16 +307,11 @@ public class user implements userLocal {
     }
 
     @Override
-    public void deleteOrderItem(Integer order_item_id, Integer oid, Integer mid) {
-        Order1 or = (Order1) em.find(Order1.class, oid);
-        Medicine m = (Medicine) em.find(Medicine.class, mid);
+    public void deleteOrderItem(Integer order_item_id) {
+//        Order1 or = (Order1) em.find(Order1.class, oid);
+//        Medicine m = (Medicine) em.find(Medicine.class, mid);
         OrderItem ot = (OrderItem) em.find(OrderItem.class, order_item_id);
         
-        or.getOrderItemCollection().remove(ot);
-        m.getOrderItemCollection().remove(ot);
-        
-        em.merge(or);
-        em.merge(m);
         em.remove(ot);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

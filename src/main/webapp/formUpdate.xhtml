@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Update"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="FormId:" for="formId" />
+                        <h:inputText id="formId" value="#{formCdi.form_id}" title="FormId" required="true" requiredMessage="The FormId field is required."/>
+                        <h:outputLabel value="Mno:" for="mno" />
+                        <h:inputText id="mno" value="#{formCdi.mno}" title="Mno" />
+                        <h:outputLabel value="Dob:" for="dob" />
+                        <h:inputText id="dob" value="#{formCdi.dob}" title="Dob" />
+                        <h:outputLabel value="Height:" for="height" />
+                        <h:inputText id="height" value="#{formCdi.height}" title="Height" />
+                        <h:outputLabel value="Weight:" for="weight" />
+                        <h:inputText id="weight" value="#{formCdi.weight}" title="Weight" />
+                        <h:outputLabel value="Uid:" for="uid" />
+                        <h:selectOneMenu id="uid" value="#{formCdi.uid}" title="Uid" >
+                            <f:selectItems value="#{registerCdi.allUsers}" var="user" itemValue="#{user.uid}" itemLabel="#{user.uname}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Fname:" for="fname" />
+                        <h:inputText id="fname" value="#{formCdi.fname}" title="Fname" />
+                        <h:outputLabel value="Gender:" for="gender" />
+                        <h:inputText id="gender" value="#{formCdi.gender}" title="Gender" />
+                        <h:outputLabel value="Address:" for="address" />
+                        <h:inputText id="address" value="#{formCdi.address}" title="Address" />
+                    </h:panelGrid>
+                    <h:commandButton value="Update" action="#{formCdi.updateForm()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

@@ -9,77 +9,83 @@
     <h:body>
         
         <center>
-        <f:view>
+            
+            <f:view>
+                <h3><h:link value="Insert" outcome="formInsert" /></h3>
+                <h:form>
+                    <h1><h:outputText value="Form"/></h1>
+                    <h:dataTable value="#{formCdi.allForm}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="FormId"/>
+                            </f:facet>
+                            <h:outputText value="#{item.formId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mno"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mno}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Dob"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dob}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Height"/>
+                            </f:facet>
+                            <h:outputText value="#{item.height}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Weight"/>
+                            </f:facet>
+                            <h:outputText value="#{item.weight}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Uid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uid.uname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fname"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Gender"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gender}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Address"/>
+                            </f:facet>
+                            <h:outputText value="#{item.address}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Update" action="#{formCdi.redirectToUpdate()}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Delete" action="#{formCdi.deleteForm()}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
 
-
-            <h:form>
-                <h1><h:outputText value="Form by User"/></h1>
-                <h:dataTable value="#{formCdi.allForm}" var="item" border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="FormId"/>
-                        </f:facet>
-                        <h:outputText value="#{item.formId}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Mno"/>
-                        </f:facet>
-                        <h:outputText value="#{item.mno}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Dob"/>
-                        </f:facet>
-                        <h:outputText value="#{item.dob}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Height"/>
-                        </f:facet>
-                        <h:outputText value="#{item.height}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Weight"/>
-                        </f:facet>
-                        <h:outputText value="#{item.weight}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Uid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.uid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Fname"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fname}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Gender"/>
-                        </f:facet>
-                        <h:outputText value="#{item.gender}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Address"/>
-                        </f:facet>
-                        <h:outputText value="#{item.address}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Delete" action="#{formCdi.deleteForm(item.form_id, item.uid)}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </f:view>
         </center>
-
         
     </h:body>
 </html>

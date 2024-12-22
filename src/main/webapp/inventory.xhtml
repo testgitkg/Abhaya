@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h3><h:link value="Insert" outcome="inventoryInsert" /></h3>
+                <h:form>
+                    <h1><h:outputText value="Inventory"/></h1>
+                    <h:dataTable value="#{inventoryCdi.allInventories}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="InventoryId"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inventoryId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantity"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quantity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:outputText value="#{item.action}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ActionDate"/>
+                            </f:facet>
+                            <h:outputText value="#{item.actionDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Notes"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mid.mname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ManagedBy"/>
+                            </f:facet>
+                            <h:outputText value="#{item.managedBy.aname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Update" action="#{inventoryCdi.redirectToUpdate()}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Delete" action="#{inventoryCdi.deleteInventory()}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

@@ -113,13 +113,10 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public void deleteAdmin(Integer aid, Integer rid) {
-        Role r = (Role) em.find(Role.class, rid);
+    public void deleteAdmin(Integer aid) {
+//        Role r = (Role) em.find(Role.class, rid);
         Admin ad = (Admin) em.find(Admin.class, aid);
         
-        r.getAdminCollection().remove(ad);
-        
-        em.merge(r);
         em.remove(ad);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -181,13 +178,10 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public void deleteBlog(Integer blog_id, Integer aid) {
-        Admin ad = (Admin) em.find(Admin.class, aid);
+    public void deleteBlog(Integer blog_id) {
+//        Admin ad = (Admin) em.find(Admin.class, aid);
         Blog bg = (Blog) em.find(Blog.class, blog_id);
         
-        ad.getBlogCollection().remove(bg);
-        
-        em.merge(ad);
         em.remove(bg);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -289,6 +283,7 @@ public class admin implements adminLocal {
     @Override
     public void deleteCategory(Integer cat_id) {
         Category c = (Category) em.find(Category.class, cat_id);
+        
         em.remove(c);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -350,16 +345,11 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public void deleteMedicine(Integer mid, Integer bid, Integer cat_id) {
-        Brand b = (Brand) em.find(Brand.class, bid);
-        Category c = (Category) em.find(Category.class, cat_id);
+    public void deleteMedicine(Integer mid) {
+//        Brand b = (Brand) em.find(Brand.class, bid);
+//        Category c = (Category) em.find(Category.class, cat_id);
         Medicine m = (Medicine) em.find(Medicine.class, mid);
         
-        b.getMedicineCollection().remove(m);
-        c.getMedicineCollection().remove(m);
-        
-        em.merge(b);
-        em.merge(c);
         em.remove(m);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -419,16 +409,11 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public void deleteCartItem(Integer cart_item_id, Integer cartid, Integer mid) {
+    public void deleteCartItem(Integer cart_item_id) {
         CartItem ct = (CartItem) em.find(CartItem.class, cart_item_id);
-        Cart c = (Cart) em.find(Cart.class, cartid);
-        Medicine m = (Medicine) em.find(Medicine.class, mid);
+//        Cart c = (Cart) em.find(Cart.class, cartid);
+//        Medicine m = (Medicine) em.find(Medicine.class, mid);
         
-        c.getCartItemCollection().remove(ct);
-        m.getCartItemCollection().remove(ct);
-        
-        em.merge(c);
-        em.merge(m);
         em.remove(ct);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -468,13 +453,10 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public void deleteOrderManage(Integer manage_id, Integer oid) {
+    public void deleteOrderManage(Integer manage_id) {
         OrderManage om = (OrderManage) em.find(OrderManage.class, manage_id);
-        Order1 or = (Order1) em.find(Order1.class, oid);
+//        Order1 or = (Order1) em.find(Order1.class, oid);
         
-        or.getOrderManageCollection().remove(om);
-        
-        em.merge(or);
         em.remove(om);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -534,13 +516,10 @@ public class admin implements adminLocal {
     }
 
     @Override
-    public void deleteInventory(Integer inventory_id, Integer mid) {
+    public void deleteInventory(Integer inventory_id) {
         InventoryManage im = (InventoryManage) em.find(InventoryManage.class, inventory_id);
-        Medicine m = (Medicine) em.find(Medicine.class, mid);
+//        Medicine m = (Medicine) em.find(Medicine.class, mid);
         
-        m.getInventoryManageCollection().remove(im);
-        
-        em.merge(m);
         em.remove(im);
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

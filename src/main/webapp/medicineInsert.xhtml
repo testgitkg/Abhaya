@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Add"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Mname:" for="mname" />
+                        <h:inputText id="mname" value="#{medicineCdi.mname}" title="Mname" />
+                        <h:outputLabel value="Img:" for="img" />
+                        <h:inputTextarea rows="4" cols="30" id="img" value="#{medicineCdi.img}" title="Img" />
+                        <h:outputLabel value="Description:" for="description" />
+                        <h:inputText id="description" value="#{medicineCdi.description}" title="Description" />
+                        <h:outputLabel value="Price:" for="price" />
+                        <h:inputText id="price" value="#{medicineCdi.price}" title="Price" />
+                        <h:outputLabel value="Quantity:" for="quantity" />
+                        <h:inputText id="quantity" value="#{medicineCdi.quantity}" title="Quantity" />
+                        <h:outputLabel value="Availability:" for="availability" />
+                        <h:inputText id="availability" value="#{medicineCdi.availability}" title="Availability" />
+                        <h:outputLabel value="Bid:" for="bid" />
+                        <h:selectOneMenu id="bid" value="#{medicineCdi.bid}" title="Bid" >
+                            <f:selectItems value="#{brandCdi.brands}" var="brand" itemValue="#{brand.bid}" itemLabel="#{brand.bname}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="CatId:" for="catId" />
+                        <h:selectOneMenu id="catId" value="#{medicineCdi.cat_id}" title="CatId" >
+                            <f:selectItems value="#{categoryCdi.allCategory}" var="cat" itemValue="#{cat.catId}" itemLabel="#{cat.cname}" />
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton value="Add" action="#{medicineCdi.addMedicine()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

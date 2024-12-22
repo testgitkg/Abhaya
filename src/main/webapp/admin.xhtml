@@ -9,59 +9,59 @@
     <h:body>
         
         <center>
-        <f:view>
-            <h3><h:link value="Insert" outcome="adminInsert" /></h3>
-            <h:form>
-                <h1><h:outputText value="Admin List"/></h1>
-                <h:dataTable value="#{adminCdi.allAdmin}" var="item" border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Aid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.aid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Rid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.rid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Aname"/>
-                        </f:facet>
-                        <h:outputText value="#{item.aname}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Email"/>
-                        </f:facet>
-                        <h:outputText value="#{item.email}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Password"/>
-                        </f:facet>
-                        <h:outputText value="#{item.password}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Update" action="#{adminCdi.updateAdmin()}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Delete" action="#{adminCdi.deleteAdmin(item.aid, item.rid)}" />
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </f:view>
             
-        </center>
+            <f:view>
+                <h3><h:link value="Insert" outcome="adminInsert" /></h3>
+                <h:form>
+                    <h1><h:outputText value="Admin"/></h1>
+                    <h:dataTable value="#{adminCdi.allAdmin}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Aid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Rid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rid.roleName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Aname"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Password"/>
+                            </f:facet>
+                            <h:outputText value="#{item.password}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Update" action="#{adminCdi.redirectToUpdate()}" />
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Delete" action="#{adminCdi.deleteAdmin()}" />
+<!--                            <h:commandLink value="delete" action="#{adminCdi.deleteAdmin()}">
+                            <f:setPropertyActionListener value="#{item.aid}" target="#{adminCdi.aid}"/>
+                            </h:commandLink>-->
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
 
+        </center>
         
     </h:body>
 </html>

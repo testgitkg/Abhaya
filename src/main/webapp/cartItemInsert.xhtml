@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Add"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Quantity:" for="quantity" />
+                        <h:inputText id="quantity" value="#{cartItemCdi.quantity}" title="Quantity" />
+                        <h:outputLabel value="Price:" for="price" />
+                        <h:inputText id="price" value="#{cartItemCdi.price}" title="Price" />
+                        <h:outputLabel value="Cartid:" for="cartid" />
+                        <h:selectOneMenu id="cartid" value="#{cartItemCdi.cartid}" title="Cartid" >
+                            <f:selectItems value="#{cartCdi.allCart}" var="cart" itemValue="#{cart.cartid}" itemLabel="#{cart.status}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Mid:" for="mid" />
+                        <h:selectOneMenu id="mid" value="#{cartItemCdi.mid}" title="Mid" >
+                            <f:selectItems value="#{medicineCdi.allMedicine}" var="medi" itemValue="#{medi.mid}" itemLabel="#{medi.mname}" />
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton value="Add" action="#{cartItemCdi.addCartItem()}" />
+                </h:form>
+            </f:view>
+        </center>
+        
+    </h:body>
+</html>

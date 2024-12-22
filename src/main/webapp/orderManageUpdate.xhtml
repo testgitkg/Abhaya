@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Update"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="ManageId:" for="manageId" />
+                        <h:inputText id="manageId" value="#{orderManageCdi.manage_id}" title="ManageId" required="true" requiredMessage="The ManageId field is required."/>
+                        <h:outputLabel value="Status:" for="status" />
+                        <h:inputText id="status" value="#{orderManageCdi.status}" title="Status" />
+                        <h:outputLabel value="Timestamp:" for="timestamp" />
+                        <h:inputText id="timestamp" value="#{orderManageCdi.timestamp}" title="Timestamp" required="true" requiredMessage="The Timestamp field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="Oid:" for="oid" />
+                        <h:selectOneMenu id="oid" value="#{orderManageCdi.oid}" title="Oid" >
+                            <f:selectItems value="#{orderCdi.allOrders}" var="order" itemValue="#{order.oid}" itemLabel="#{order.status}" />
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton value="Update" action="#{orderManageCdi.updateOrderManage()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

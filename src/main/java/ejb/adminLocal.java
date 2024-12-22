@@ -39,7 +39,7 @@ public interface adminLocal {
     //admin detail
     void addAdmin(String aname, String email, String password, Integer rid);
     void updateAdmin(Integer aid, String aname, String email, String password, Integer rid);
-    void deleteAdmin(Integer aid, Integer rid);
+    void deleteAdmin(Integer aid);
     Collection<Admin> getAllAdmin();
     Collection<Admin> getAdminById(Integer aid);
     Collection<Admin> getAdminbyName(String aname);
@@ -47,7 +47,7 @@ public interface adminLocal {
     //blog detail
     void addBlog(Integer aid, String title, String content, String status, String tags);
     void updateBlog(Integer blog_id, Integer aid, String title, String content, String status, String tags);
-    void deleteBlog(Integer blog_id, Integer aid);
+    void deleteBlog(Integer blog_id);
     Collection<Blog> getAllBlog();
     Collection<Blog> getBlogByid(Integer blog_id);
     Collection<Blog> getBlogByTitle(String title);
@@ -71,7 +71,7 @@ public interface adminLocal {
     //medicine
     void addMedicine(String mname, String img, String description, Integer price, String quantity, String availability, Integer bid, Integer cat_id);
     void updateMedicine(Integer mid, String mname, String img, String description, Integer price, String quantity, String availability, Integer bid, Integer cat_id);
-    void deleteMedicine(Integer mid, Integer bid, Integer cat_id);
+    void deleteMedicine(Integer mid);
     Collection<Medicine> getAllMedicines();
     Collection<Medicine> getMedicineByMname(String mname);
     Collection<Medicine> getMediByAvailability(String availability);
@@ -79,20 +79,20 @@ public interface adminLocal {
     //cart _item
     void addCartItem(Integer cartid, Integer mid, Integer quantity, BigDecimal price);
     void updateCartItem(Integer cart_item_id, Integer cartid, Integer mid, Integer quantity, BigDecimal price);
-    void deleteCartItem(Integer cart_item_id, Integer cartid, Integer mid);
+    void deleteCartItem(Integer cart_item_id);
     Collection<CartItem> getAllCartItems();
     
     // order manage
     void addOrderManage(Integer oid, String status);
     void updateOrderManage(Integer manage_id, Integer oid, String status);
-    void deleteOrderManage(Integer manage_id, Integer oid);
+    void deleteOrderManage(Integer manage_id);
     Collection<OrderManage> getAllOrderManages();
     Collection<OrderManage> getStatus(String status);
     
     // inventory manage
     void addInventory(Integer mid, Integer quantity, String action, Integer managed_by, String notes);
     void updateInventory(Integer inventory_id, Integer mid, Integer quantity, String action, Integer managed_by, String notes);
-    void deleteInventory(Integer inventory_id, Integer mid);
+    void deleteInventory(Integer inventory_id);
     Collection<InventoryManage> getAllInventories();
     Collection<InventoryManage> getInventoryByAction(String action);
     

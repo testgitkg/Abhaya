@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>            
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Add"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Quantity:" for="quantity" />
+                        <h:inputText id="quantity" value="#{inventoryCdi.quantity}" title="Quantity" required="true" requiredMessage="The Quantity field is required."/>
+                        <h:outputLabel value="Action:" for="action" />
+                        <h:inputText id="action" value="#{inventoryCdi.action}" title="Action" required="true" requiredMessage="The Action field is required."/>
+                        <h:outputLabel value="ActionDate:" for="actionDate" />
+                        <h:inputText id="actionDate" value="#{inventoryCdi.action_date}" title="ActionDate" required="true" requiredMessage="The ActionDate field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="Notes:" for="notes" />
+                        <h:inputTextarea rows="4" cols="30" id="notes" value="#{inventoryCdi.notes}" title="Notes" />
+                        <h:outputLabel value="Mid:" for="mid" />
+                        <h:selectOneMenu id="mid" value="#{inventoryCdi.mid}" title="Mid" >
+                            <f:selectItems value="#{medicineCdi.allMedicine}" var="medi" itemValue="#{medi.mid}" itemLabel="#{medi.mname}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="ManagedBy:" for="managedBy" />
+                        <h:selectOneMenu id="managedBy" value="#{inventoryCdi.managed_by}" title="ManagedBy" >
+                            <f:selectItems value="#{adminCdi.allAdmin}" var="admin" itemValue="#{admin.aid}" itemLabel="#{admin.aname}" />
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton value="Add" action="#{inventoryCdi.addInventory()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

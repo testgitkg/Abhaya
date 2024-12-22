@@ -32,11 +32,11 @@ public class adminClient {
     }
 
     public void updateCartItem(String cartItemId, String cartid, String mid, String quantity, String price) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updatecartitem/{0}/{1}/{2}/{3}/{4}", new Object[]{cartItemId, cartid, mid, quantity, price})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updatecartitem/{0}/{1}/{2}/{3}/{4}", new Object[]{cartItemId, cartid, mid, quantity, price})).request().post(null);
     }
 
     public void updateRole(String rid, String roleName) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updaterole/{0}/{1}", new Object[]{rid, roleName})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updaterole/{0}/{1}", new Object[]{rid, roleName})).request().post(null);
     }
 
     public <T> T getOrderByOid(Class<T> responseType, String oid) throws ClientErrorException {
@@ -50,11 +50,11 @@ public class adminClient {
     }
 
     public void updateBrand(String bid, String bname, String bimg, String manufacturer, String countryOrigin, String siteUrl) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updatebrand/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{bid, bname, bimg, manufacturer, countryOrigin, siteUrl})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updatebrand/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{bid, bname, bimg, manufacturer, countryOrigin, siteUrl})).request().post(null);
     }
 
     public void updateCategory(String catId, String cname, String description) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updatecategory/{0}/{1}/{2}", new Object[]{catId, cname, description})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updatecategory/{0}/{1}/{2}", new Object[]{catId, cname, description})).request().post(null);
     }
 
     public <T> T getBlogByid(Class<T> responseType, String blogId) throws ClientErrorException {
@@ -70,11 +70,17 @@ public class adminClient {
     }
 
     public void updateMedicine(String mid, String mname, String img, String description, String price, String quantity, String availability, String bid, String catId) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updatemedicine/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}", new Object[]{mid, mname, img, description, price, quantity, availability, bid, catId})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updatemedicine/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}", new Object[]{mid, mname, img, description, price, quantity, availability, bid, catId})).request().post(null);
     }
 
-    public void deleteAdmin(String aid, String rid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("deleteadmin/{0}/{1}", new Object[]{aid, rid})).request().delete();
+    public <T> T getAllOrders(Class<T> responseType) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path("allorder");
+        return resource.request(jakarta.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+    public void deleteAdmin(String aid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deleteadmin/{0}", new Object[]{aid})).request().delete();
     }
 
     public void deleteBrand(String bid) throws ClientErrorException {
@@ -87,8 +93,8 @@ public class adminClient {
         return resource.request(jakarta.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void deleteOrderManage(String manageId, String oid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("deleteordermanage/{0}/{1}", new Object[]{manageId, oid})).request().delete();
+    public void deleteOrderManage(String manageId) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deleteordermanage/{0}", new Object[]{manageId})).request().delete();
     }
 
     public <T> T getAllBrands(Class<T> responseType) throws ClientErrorException {
@@ -103,8 +109,8 @@ public class adminClient {
         return resource.request(jakarta.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void deleteCartItem(String cartItemId, String cartid, String mid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("deletecartitem/{0}/{1}/{2}", new Object[]{cartItemId, cartid, mid})).request().delete();
+    public void deleteCartItem(String cartItemId) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deletecartitem/{0}", new Object[]{cartItemId})).request().delete();
     }
 
     public void addOrderManage(String oid, String status) throws ClientErrorException {
@@ -118,7 +124,7 @@ public class adminClient {
     }
 
     public void updateAdmin(String aid, String aname, String email, String password, String rid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updateadmin/{0}/{1}/{2}/{3}/{4}", new Object[]{aid, aname, email, password, rid})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updateadmin/{0}/{1}/{2}/{3}/{4}", new Object[]{aid, aname, email, password, rid})).request().post(null);
     }
 
     public <T> T getAllForm(Class<T> responseType) throws ClientErrorException {
@@ -152,7 +158,7 @@ public class adminClient {
     }
 
     public void updateOrderManage(String manageId, String oid, String status) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updateordermanage/{0}/{1}/{2}", new Object[]{manageId, oid, status})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updateordermanage/{0}/{1}/{2}", new Object[]{manageId, oid, status})).request().post(null);
     }
 
     public <T> T getAllInventories(Class<T> responseType) throws ClientErrorException {
@@ -193,8 +199,8 @@ public class adminClient {
         return resource.request(jakarta.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void deleteBlog(String blogId, String aid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("deleteblog/{0}/{1}", new Object[]{blogId, aid})).request().delete();
+    public void deleteBlog(String blogId) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deleteblog/{0}", new Object[]{blogId})).request().delete();
     }
 
     public <T> T getFormByFname(Class<T> responseType, String fname) throws ClientErrorException {
@@ -231,12 +237,12 @@ public class adminClient {
         webTarget.path(java.text.MessageFormat.format("addbrand/{0}/{1}/{2}/{3}/{4}", new Object[]{bname, bimg, manufacturer, countryOrigin, siteUrl})).request().post(null);
     }
 
-    public void deleteInventory(String inventoryId, String mid) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("deleteinventory/{0}/{1}", new Object[]{inventoryId, mid})).request().delete();
+    public void deleteInventory(String inventoryId) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deleteinventory/{0}", new Object[]{inventoryId})).request().delete();
     }
 
     public void updateBlog(String blogId, String aid, String title, String content, String status, String tags) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updateblog/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{blogId, aid, title, content, status, tags})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updateblog/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{blogId, aid, title, content, status, tags})).request().post(null);
     }
 
     public void addBlog(String aid, String title, String content, String status, String tags) throws ClientErrorException {
@@ -302,8 +308,8 @@ public class adminClient {
         return resource.request(jakarta.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public void deleteMedicine(String mid, String bid, String catId) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("deletemedicine/{0}/{1}/{2}", new Object[]{mid, bid, catId})).request().delete();
+    public void deleteMedicine(String mid) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("deletemedicine/{0}", new Object[]{mid})).request().delete();
     }
 
     public <T> T getAdminbyName(Class<T> responseType, String aname) throws ClientErrorException {
@@ -313,7 +319,7 @@ public class adminClient {
     }
 
     public void updateInventory(String inventoryId, String mid, String quantity, String action, String managedBy, String notes) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("updateinventory/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{inventoryId, mid, quantity, action, managedBy, notes})).request().put(null);
+        webTarget.path(java.text.MessageFormat.format("updateinventory/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{inventoryId, mid, quantity, action, managedBy, notes})).request().post(null);
     }
 
     public <T> T getFeedbackByFid(Class<T> responseType, String fid) throws ClientErrorException {

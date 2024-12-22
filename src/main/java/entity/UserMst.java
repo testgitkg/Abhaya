@@ -19,7 +19,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -129,6 +128,7 @@ public class UserMst implements Serializable {
     public String toString() {
         return "entity.UserMst[ uid=" + uid + " ]";
     }
+    
     @JsonbTransient
     public Collection<Order1> getOrder1Collection() {
         return order1Collection;
@@ -136,6 +136,7 @@ public class UserMst implements Serializable {
     public void setOrder1Collection(Collection<Order1> order1Collection) {
         this.order1Collection = order1Collection;
     }
+    
     @JsonbTransient
     public Collection<Feedback> getFeedbackCollection() {
         return feedbackCollection;
@@ -143,6 +144,7 @@ public class UserMst implements Serializable {
     public void setFeedbackCollection(Collection<Feedback> feedbackCollection) {
         this.feedbackCollection = feedbackCollection;
     }
+    
     @JsonbTransient
     public Collection<Cart> getCartCollection() {
         return cartCollection;
@@ -150,6 +152,7 @@ public class UserMst implements Serializable {
     public void setCartCollection(Collection<Cart> cartCollection) {
         this.cartCollection = cartCollection;
     }
+    
     @JsonbTransient
     public Collection<Form> getFormCollection() {
         return formCollection;

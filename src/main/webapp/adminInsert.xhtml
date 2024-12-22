@@ -9,26 +9,27 @@
     <h:body>
         
         <center>
-        <f:view>
-            <h:form>
-                <h1><h:outputText value="Create/Edit Admin"/></h1>
-                <h:panelGrid columns="2">                    
-                    <h:outputLabel value="Rid:" for="rid" />
-                    <h:selectOneMenu id="rid" value="#{adminCdi.a.rid}" title="Rid" >                        
-                        <f:selectItems value="#{roleCdi.allRoles}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="Aname:" for="aname" />
-                    <h:inputText id="aname" value="#{adminCdi.a.aname}" title="Aname" />
-                    <h:outputLabel value="Email:" for="email" />
-                    <h:inputText id="email" value="#{adminCdi.a.email}" title="Email" />
-                    <h:outputLabel value="Password:" for="password" />
-                    <h:inputText id="password" value="#{adminCdi.a.password}" title="Password" />
-                </h:panelGrid> <br/>
-                <h:commandButton value="Submit" action="#{adminCdi.addAdmin()}" />
-            </h:form>
-        </f:view>
-        </center>
+            
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Add"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Rid:" for="rid" />
+                        <h:selectOneMenu id="rid" value="#{adminCdi.rid}" title="Rid" >
+                            <f:selectItems value="#{roleCdi.allRoles}" var="role" itemValue="#{role.rid}" itemLabel="#{role.roleName}" />
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Aname:" for="aname" />
+                        <h:inputText id="aname" value="#{adminCdi.aname}" title="Aname" />
+                        <h:outputLabel value="Email:" for="email" />
+                        <h:inputText id="email" value="#{adminCdi.email}" title="Email" />
+                        <h:outputLabel value="Password:" for="password" />
+                        <h:inputText id="password" value="#{adminCdi.password}" title="Password" />
+                    </h:panelGrid>
+                    <h:commandButton value="Add" action="#{adminCdi.addAdmin()}" />
+                </h:form>
+            </f:view>
 
+        </center>
         
     </h:body>
 </html>

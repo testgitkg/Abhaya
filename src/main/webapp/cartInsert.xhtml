@@ -9,27 +9,26 @@
     <h:body>
         
         <center>
-            
             <f:view>
                 <h:form>
-                    <h1><h:outputText value="Create/Edit Cart"/></h1>
+                    <h1><h:outputText value="Add"/></h1>
                     <h:panelGrid columns="2">
                         <h:outputLabel value="CreatedAt:" for="createdAt" />
-                        <h:inputText id="createdAt" value="#{cartCdi.c.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <h:inputText id="createdAt" value="#{cartCdi.created_at}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
                         </h:inputText>
                         <h:outputLabel value="UpdatedAt:" for="updatedAt" />
-                        <h:inputText id="updatedAt" value="#{cartCdi.c.updatedAt}" title="UpdatedAt" required="true" requiredMessage="The UpdatedAt field is required.">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        <h:inputText id="updatedAt" value="#{cartCdi.updated_at}" title="UpdatedAt" required="true" requiredMessage="The UpdatedAt field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
                         </h:inputText>
                         <h:outputLabel value="Uid:" for="uid" />
-                        <h:selectOneMenu id="uid" value="#{cartCdi.c.uid}" title="Uid" >
-                            <f:selectItems value="#{userCdi.allUsers}"/>
+                        <h:selectOneMenu id="uid" value="#{cartCdi.uid}" title="Uid" >
+                            <f:selectItems value="#{registerCdi.allUsers}" var="user" itemValue="#{user.uid}" itemLabel="#{user.uname}" />
                         </h:selectOneMenu>
                         <h:outputLabel value="Status:" for="status" />
-                        <h:inputText id="status" value="#{cartCdi.c.status}" title="Status" />
+                        <h:inputText id="status" value="#{cartCdi.status}" title="Status" />
                     </h:panelGrid> <br/>
-                    <h:commandButton value="Submit" action="#{cartCdi.addCart()}" />
+                    <h:commandButton value="Add" action="#{cartCdi.addCart()}" />
                 </h:form>
             </f:view>
 

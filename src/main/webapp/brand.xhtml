@@ -13,8 +13,8 @@
             <f:view>
                 <h3><h:link value="Insert" outcome="brandInsert" /></h3>
                 <h:form>
-                    <h1><h:outputText value="Brand"/></h1>
-                    <h:dataTable value="#{brandCdi.allBrands}" var="item" border="1">
+                    <h1><h:outputText value="Brands"/></h1>
+                    <h:dataTable value="#{brandCdi.brands}" var="item" border="1">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Bid"/>
@@ -55,13 +55,13 @@
                             <f:facet name="header">
                                 <h:outputText value="Action"/>
                             </f:facet>
-                            <h:commandButton value="Update" action="#{brandCdi.updateBrand()}" />
+                            <h:commandButton value="Update" action="#{brandCdi.redirectToUpdate()}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Action"/>
                             </f:facet>
-                            <h:commandButton value="Delete" action="#{brandCdi.deleteBrand(item.bid)}" />
+                            <h:commandButton value="Delete" action="#{brandCdi.deleteBrand()}" />
                         </h:column>
                     </h:dataTable>
                 </h:form>

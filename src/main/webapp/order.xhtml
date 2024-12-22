@@ -9,73 +9,78 @@
     <h:body>
         
         <center>
-            
-        <f:view>            
-            <h:form>
-                <h1><h:outputText value="Order By User"/></h1>
-                <h:dataTable value="#{orderCdi.allOrders}" var="item" border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Oid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.oid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="OrderDate"/>
-                        </f:facet>
-                        <h:outputText value="#{item.orderDate}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Status"/>
-                        </f:facet>
-                        <h:outputText value="#{item.status}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="TotalAmt"/>
-                        </f:facet>
-                        <h:outputText value="#{item.totalAmt}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="ShippingAdd"/>
-                        </f:facet>
-                        <h:outputText value="#{item.shippingAdd}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="PaymentStatus"/>
-                        </f:facet>
-                        <h:outputText value="#{item.paymentStatus}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="PaymentMethod"/>
-                        </f:facet>
-                        <h:outputText value="#{item.paymentMethod}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Uid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.uid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Delete" action="#{orderCdi.deleteOrder(item.oid, item.uid)}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </f:view>
-            
-        </center>
+            <f:view>
+                <h3><h:link value="Insert" outcome="orderInsert" /></h3>
+                <h:form>
+                    <h1><h:outputText value="Order"/></h1>
+                    <h:dataTable value="#{orderCdi.allOrders}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Oid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.oid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="OrderDate"/>
+                            </f:facet>
+                            <h:outputText value="#{item.orderDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Status"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="TotalAmt"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalAmt}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ShippingAdd"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shippingAdd}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="PaymentStatus"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paymentStatus}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="PaymentMethod"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paymentMethod}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Uid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uid.uname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Update" action="#{orderCdi.redirectToUpdate()}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Delete" action="#{orderCdi.deleteOrder()}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
 
+        </center>
         
     </h:body>
 </html>

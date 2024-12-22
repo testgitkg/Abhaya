@@ -79,9 +79,9 @@ public class UserResource {
         ul.updateUserMst(uid,uname, email, password, address, rid);   
 }
     @DELETE
-    @Path("deleteuser/{uid}/{rid}")
-    public void deleteUserMst(@PathParam("uid")Integer uid, @PathParam("rid")Integer rid){
-        ul.deleteUserMst(uid, rid);
+    @Path("deleteuser/{uid}")
+    public void deleteUserMst(@PathParam("uid")Integer uid){
+        ul.deleteUserMst(uid);
     }
     
     @GET
@@ -105,9 +105,9 @@ public class UserResource {
     }
     
     @DELETE
-    @Path("deletecart/{cartid}/{uid}")
-    public void deleteCart(@PathParam("cartid")Integer cartid, @PathParam("uid")Integer uid){
-       ul.deleteCart(cartid, uid);
+    @Path("deletecart/{cartid}")
+    public void deleteCart(@PathParam("cartid")Integer cartid){
+       ul.deleteCart(cartid);
     }
     
     @GET
@@ -131,9 +131,9 @@ public class UserResource {
     }     
     
     @DELETE
-    @Path("deleteform/{formId}/{uid}")
-    public void deleteForm(@PathParam("formId")Integer form_id, @PathParam("uid")Integer uid){
-       ul.deleteForm(form_id, uid);
+    @Path("deleteform/{formId}")
+    public void deleteForm(@PathParam("formId")Integer form_id){
+       ul.deleteForm(form_id);
     }    
     
 //    feedback
@@ -150,9 +150,9 @@ public class UserResource {
     }
     
     @DELETE
-    @Path("deletefeedback/{fid}/{uid}")
-    public void deleteFeedback(@PathParam("fid")Integer fid, @PathParam("uid")Integer uid){
-        ul.deleteFeedback(fid, uid);
+    @Path("deletefeedback/{fid}")
+    public void deleteFeedback(@PathParam("fid")Integer fid){
+        ul.deleteFeedback(fid);
     }
     
 //    order
@@ -169,9 +169,9 @@ public class UserResource {
     }
     
     @DELETE
-    @Path("deleteorder/{oid}/{uid}")
-    public void deleteOrder(@PathParam("oid")Integer oid,@PathParam("uid")Integer uid){
-        ul.deleteOrder(oid, uid);
+    @Path("deleteorder/{oid}")
+    public void deleteOrder(@PathParam("oid")Integer oid){
+        ul.deleteOrder(oid);
     }    
     
     @GET
@@ -195,9 +195,9 @@ public class UserResource {
     }
     
     @DELETE
-    @Path("deleteorderitem/{orderItemId}/{oid}/{mid}")
-    public void deleteOrderItem(@PathParam("orderItemId")Integer order_item_id, @PathParam("oid")Integer oid, @PathParam("mid")Integer mid){
-       ul.deleteOrderItem(order_item_id, oid, mid);
+    @Path("deleteorderitem/{orderItemId}")
+    public void deleteOrderItem(@PathParam("orderItemId")Integer order_item_id){
+       ul.deleteOrderItem(order_item_id);
     }
     
     @GET

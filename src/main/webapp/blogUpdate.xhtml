@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Update"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="BlogId:" for="blogId" />
+                        <h:inputText id="blogId" value="#{blogCdi.b.blogId}" title="BlogId" required="true" requiredMessage="The BlogId field is required."/>
+                        <h:outputLabel value="CreatedAt:" for="createdAt" />
+                        <h:inputText id="createdAt" value="#{blogCdi.b.createdAt}" title="CreatedAt" required="true" requiredMessage="The CreatedAt field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="UpdatedAt:" for="updatedAt" />
+                        <h:inputText id="updatedAt" value="#{blogCdi.b.updatedAt}" title="UpdatedAt" required="true" requiredMessage="The UpdatedAt field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:inputText>
+                        <h:outputLabel value="Aid:" for="aid" />
+                        <h:selectOneMenu id="aid" value="#{blogCdi.b.aid}" title="Aid" required="true" requiredMessage="The Aid field is required.">
+                            <f:selectItems value="#{adminCdi.allAdmin}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Title:" for="title" />
+                        <h:inputText id="title" value="#{blogCdi.b.title}" title="Title" required="true" requiredMessage="The Title field is required."/>
+                        <h:outputLabel value="Content:" for="content" />
+                        <h:inputTextarea rows="4" cols="30" id="content" value="#{blogCdi.b.content}" title="Content" required="true" requiredMessage="The Content field is required."/>
+                        <h:outputLabel value="Status:" for="status" />
+                        <h:inputText id="status" value="#{blogCdi.b.status}" title="Status" />
+                        <h:outputLabel value="Tags:" for="tags" />
+                        <h:inputText id="tags" value="#{blogCdi.b.tags}" title="Tags" />
+                    </h:panelGrid>
+                    <h:commandButton value="Update" action="#{blogCdi.updateBlog()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

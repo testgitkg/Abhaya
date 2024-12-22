@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Update"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Oid:" for="oid" />
+                        <h:inputText id="oid" value="#{orderCdi.oid}" title="Oid" required="true" requiredMessage="The Oid field is required."/>
+                        <h:outputLabel value="OrderDate:" for="orderDate" />
+                        <h:inputText id="orderDate" value="#{orderCdi.order_date}" title="OrderDate" required="true" requiredMessage="The OrderDate field is required.">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputLabel value="Status:" for="status" />
+                        <h:inputText id="status" value="#{orderCdi.status}" title="Status" />
+                        <h:outputLabel value="TotalAmt:" for="totalAmt" />
+                        <h:inputText id="totalAmt" value="#{orderCdi.total_amt}" title="TotalAmt" />
+                        <h:outputLabel value="ShippingAdd:" for="shippingAdd" />
+                        <h:inputTextarea rows="4" cols="30" id="shippingAdd" value="#{orderCdi.shipping_add}" title="ShippingAdd" />
+                        <h:outputLabel value="PaymentStatus:" for="paymentStatus" />
+                        <h:inputText id="paymentStatus" value="#{orderCdi.payment_status}" title="PaymentStatus" />
+                        <h:outputLabel value="PaymentMethod:" for="paymentMethod" />
+                        <h:inputText id="paymentMethod" value="#{orderCdi.payment_method}" title="PaymentMethod" />
+                        <h:outputLabel value="Uid:" for="uid" />
+                        <h:selectOneMenu id="uid" value="#{orderCdi.uid}" title="Uid" >
+                            <f:selectItems value="#{registerCdi.allUsers}" var="user" itemValue="#{user.uid}" itemLabel="#{user.uname}" />
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton value="Update" action="#{orderCdi.updateOrder()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

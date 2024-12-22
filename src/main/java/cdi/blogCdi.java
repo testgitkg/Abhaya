@@ -4,37 +4,107 @@
  */
 package cdi;
 
-import ejb.adminLocal;
+import client.adminClient;
+import entity.Admin;
 import entity.Blog;
-import jakarta.ejb.EJB;
 import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  *
  * @author 1
  */
 @Named(value = "blogCdi")
-@RequestScoped
-public class blogCdi {
+@SessionScoped
+public class blogCdi implements Serializable {
     
-    @EJB adminLocal al;
+    adminClient ac;
+    Response rs;
+    Blog b;
+    Admin a;
     
-    Blog b = new Blog();
-    Collection<Blog> blog;
-    GenericType<Collection<Blog>> gblog;
-    Integer  aid;
+    Integer blog_id;
+    Integer aid;
     String title;
     String content;
     String status;
+//    Date created_at;
+//    Date updated_at;
     String tags;
+    Collection<Blog> blog;
+    GenericType<Collection<Blog>> gblog;
+    
+    Collection<Admin> admin;
+    GenericType<Collection<Admin>> gadmin;
 
     /**
      * Creates a new instance of blogCdi
      */
     public blogCdi() {
+        ac = new adminClient();
+        blog = new ArrayList<>();
+        gblog = new GenericType<Collection<Blog>>(){};
+        admin = new ArrayList<>();
+        gadmin = new GenericType<Collection<Admin>>(){};
+        b = new Blog();
+        a = new Admin();        
+    }
+
+    public String addBlog(){
+        ac.addBlog(String.valueOf(aid), title, content, status, tags);
+        return "blog.xhtml";
+    }
+    
+    public String updateBlog(){
+        blog_id = b.getBlogId();
+        a = b.getAid();
+        title = b.getTitle();
+        content = b.getContent();
+        status = b.getStatus();
+//        created_at = b.getCreatedAt();
+//        updated_at = b.getUpdatedAt();
+        tags = b.getTags();
+        
+        ac.updateBlog(String.valueOf(blog_id), String.valueOf(aid), title, content, status, tags);
+        b = new Blog();
+        return "blog.xhtml";
+    }
+    
+    public String deleteBlog(){
+        ac.deleteBlog(String.valueOf(blog_id));
+        return "blog.xhtml";
+    }
+    
+    public Collection<Blog> getAllBlog(){
+        rs = ac.getAllBlog(Response.class);
+        blog = rs.readEntity(gblog);
+        return blog;
+    }
+    
+    public String redirectToUpdate(){
+        return "blogUpdate.xhtml";
+    }
+    
+    public adminClient getAc() {
+        return ac;
+    }
+
+    public void setAc(adminClient ac) {
+        this.ac = ac;
+    }
+
+    public Response getRs() {
+        return rs;
+    }
+
+    public void setRs(Response rs) {
+        this.rs = rs;
     }
 
     public Blog getB() {
@@ -45,12 +115,20 @@ public class blogCdi {
         this.b = b;
     }
 
-    public Collection<Blog> getBlog() {
-        return blog;
+    public Admin getA() {
+        return a;
     }
 
-    public void setBlog(Collection<Blog> blog) {
-        this.blog = blog;
+    public void setA(Admin a) {
+        this.a = a;
+    }
+
+    public Integer getBlog_id() {
+        return blog_id;
+    }
+
+    public void setBlog_id(Integer blog_id) {
+        this.blog_id = blog_id;
     }
 
     public Integer getAid() {
@@ -92,25 +170,38 @@ public class blogCdi {
     public void setTags(String tags) {
         this.tags = tags;
     }
-    
-    
-    
-    public String addBlog(){
-        al.addBlog(aid, title, content, status, tags);
-        return "blog.xhtml";
+
+    public Collection<Blog> getBlog() {
+        return blog;
     }
-    
-    public String updateBlog(){
-        
-        return "blog.xhtml";
+
+    public void setBlog(Collection<Blog> blog) {
+        this.blog = blog;
     }
-    
-    public void deleteBlog(Integer blog_id, Integer aid){
-        al.deleteBlog(blog_id, aid);
+
+    public GenericType<Collection<Blog>> getGblog() {
+        return gblog;
     }
-    
-    public Collection<Blog> getAllBlog(){
-        return al.getAllBlog();
+
+    public void setGblog(GenericType<Collection<Blog>> gblog) {
+        this.gblog = gblog;
     }
+
+    public Collection<Admin> getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Collection<Admin> admin) {
+        this.admin = admin;
+    }
+
+    public GenericType<Collection<Admin>> getGadmin() {
+        return gadmin;
+    }
+
+    public void setGadmin(GenericType<Collection<Admin>> gadmin) {
+        this.gadmin = gadmin;
+    }
+      
     
 }

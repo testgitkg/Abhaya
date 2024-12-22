@@ -5,89 +5,33 @@
       xmlns:f="jakarta.faces.core">
     <h:head>
         <title>Facelet Title</title>
-        <style>
-            .Register {
-                width: 100%; height: 100%; position: relative; background: white;
-            }
-            .Header, .Footer {
-                width: 100%; height: 85px; background: #B4B4B4;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px;
-            }
-            .Footer { height: 200px; }
-            .RegisterBox {
-                width: 507px; margin: 50px auto; background: #fff;
-                box-shadow: 4px 4px 22px rgba(0, 0, 0, 0.22);
-                border-radius: 30px; padding: 20px; text-align: center;
-            }
-            input, select {
-                width: 90%; margin: 10px 0; padding: 8px; border-radius: 10px; border: 1px solid #ccc;
-            }
-            .SubmitButton {
-                background: #A9A9A9; color: #fff; padding: 10px; border-radius: 10px;
-                border: none; cursor: pointer; font-size: 18px;
-            }
-            .SubmitButton:hover {
-                background: #898989;
-            }
-        </style>
     </h:head>
     <h:body>
         
         <center>
             
-            <div class="Register">
-            <!-- Header -->
-            <div class="Header">
-                <div style="float: left; padding: 10px;">
-                    <img src="https://via.placeholder.com/85" alt="Logo" />
-                </div>
-                <div style="float: right; padding: 30px;">
-                    <a href="#">Home</a> | <a href="#">About Us</a> | 
-                    <a href="#">Medicines</a> | <a href="#">Contact Us</a> | <a href="#">Blog</a>
-                </div>
-            </div>
-
-            <!-- Register Form -->
-            <div class="RegisterBox">
-                <h1>Register</h1>
+            <f:view>
                 <h:form>
-                    <h:outputLabel value="Role ID:" for="rid" />
-                    <h:selectOneMenu id="rid" value="#{roleCdi.r.rid}" >
-                        <f:selectItems value="#{roleCdi.allRoles}" />
-                    </h:selectOneMenu>
-                    <br/>
-                    <h:outputLabel value="Name:" for="uname" />
-                    <h:inputText id="uname" value="#{registerCdi.u.uname}" />
-
-                    <h:outputLabel value="Email:" for="email" />
-                    <h:inputText id="email" value="#{registerCdi.u.email}" />
-
-                    <h:outputLabel value="Password:" for="password" />
-                    <h:inputSecret id="password" value="#{registerCdi.u.password}" />
-
-                    <h:outputLabel value="Address:" for="address" />
-                    <h:inputText id="address" value="#{registerCdi.u.address}" />
-
-                    <br />
-                    <h:commandButton value="Submit" styleClass="SubmitButton" 
-                                     action="#{registerCdi.addUserMst()}" />
+                    <h1><h:outputText value="Add"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Rid:" for="rid" />
+                        <h:selectOneMenu id="rid" value="#{registerCdi.rid}" title="Rid">
+                            <f:selectItems value="#{roleCdi.allRoles}" var="role" itemValue="#{role.rid}" itemLabel="#{role.roleName}"/>
+                        </h:selectOneMenu>
+                        <h:outputLabel value="Uname:" for="uname" />
+                        <h:inputText id="uname" value="#{registerCdi.uname}" title="Uname" />
+                        <h:outputLabel value="Email:" for="email" />
+                        <h:inputText id="email" value="#{registerCdi.email}" title="Email" />
+                        <h:outputLabel value="Password:" for="password" />
+                        <h:inputText id="password" value="#{registerCdi.password}" title="Password" />
+                        <h:outputLabel value="Address:" for="address" />
+                        <h:inputText id="address" value="#{registerCdi.address}" title="Address" />
+                    </h:panelGrid> <br/>
+                    <h:commandButton value="Submit" action="#{registerCdi.addUserMst()}" />
                 </h:form>
-            </div>
+            </f:view>
 
-            <!-- Footer -->
-            <div class="Footer">
-                <div style="padding: 20px;">
-                    <p>&copy; 2024 Your Company. All rights reserved.</p>
-                    <p>
-                        <a href="#">Privacy Policy</a> | 
-                        <a href="#">Terms &amp; Conditions</a>
-                    </p>
-
-                </div>
-            </div>
-        </div>
-            
-        </center>        
+        </center>
         
     </h:body>
 </html>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <center>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="Update"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="CatId:" for="catId" />
+                        <h:inputText id="catId" value="#{categoryCdi.cat_id}" title="CatId" required="true" requiredMessage="The CatId field is required."/>
+                        <h:outputLabel value="Cname:" for="cname" />
+                        <h:inputText id="cname" value="#{categoryCdi.cname}" title="Cname" />
+                        <h:outputLabel value="Description:" for="description" />
+                        <h:inputText id="description" value="#{categoryCdi.description}" title="Description" />
+                    </h:panelGrid>
+                    <h:commandButton value="Add" action="#{categoryCdi.updateCategory()}" />
+                </h:form>
+            </f:view>
+
+        </center>
+        
+    </h:body>
+</html>

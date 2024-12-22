@@ -1,39 +1,103 @@
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
 package cdi;
 
-import ejb.userLocal;
+import client.userClient;
 import entity.Cart;
-import jakarta.ejb.EJB;
+import entity.UserMst;
 import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  *
  * @author 1
  */
 @Named(value = "cartCdi")
-@RequestScoped
-public class cartCdi {
+@SessionScoped
+public class cartCdi implements Serializable {
     
-    @EJB userLocal ul;
+    userClient uc;
+    Response rs;
+    Cart c;
+    UserMst u;
     
-    Cart c = new Cart();
+    Integer cartid;
+    Integer uid;
+    Date created_at;
+    Date updated_at;
+    String status;
     Collection<Cart> cart;
     GenericType<Collection<Cart>> gcart;
-    Integer uid;
-    String status;
-    
+    Collection<UserMst> user;
+    GenericType<Collection<UserMst>> guser;
 
     /**
      * Creates a new instance of cartCdi
      */
     public cartCdi() {
+        uc = new userClient();
+        cart = new ArrayList<>();
+        gcart = new GenericType<Collection<Cart>>(){};
+        user = new ArrayList<>();
+        guser = new GenericType<Collection<UserMst>>(){};
+        c = new Cart();
+        u = new UserMst();
+    }
+
+    public String addCart(){
+        uc.addCart(String.valueOf(uid), status);
+        return "cart.xhtml";
+    }
+    
+    public String updateCart(){
+        cartid = c.getCartid();
+        u = c.getUid();
+        created_at = c.getCreatedAt();
+        updated_at = c.getUpdatedAt();
+        status = c.getStatus();
+        
+        uc.updateCart(String.valueOf(cartid), String.valueOf(uid), status);
+        c = new Cart();
+        return "cart.xhtml";
+    }
+    
+    public String deleteCart(){
+        uc.deleteCart(String.valueOf(cartid));
+        return "cart.xhtml";
+    }
+    
+    public Collection<Cart> getAllCart(){
+        rs = uc.getAllCart(Response.class);
+        cart = rs.readEntity(gcart);
+        return cart;
+    }
+    
+    public String redirectToUpdate(){
+        return "cartUpdate.xhtml";
+    }
+    
+    public userClient getUc() {
+        return uc;
+    }
+
+    public void setUc(userClient uc) {
+        this.uc = uc;
+    }
+
+    public Response getRs() {
+        return rs;
+    }
+
+    public void setRs(Response rs) {
+        this.rs = rs;
     }
 
     public Cart getC() {
@@ -44,12 +108,20 @@ public class cartCdi {
         this.c = c;
     }
 
-    public Collection<Cart> getCart() {
-        return cart;
+    public UserMst getU() {
+        return u;
     }
 
-    public void setCart(Collection<Cart> cart) {
-        this.cart = cart;
+    public void setU(UserMst u) {
+        this.u = u;
+    }
+
+    public Integer getCartid() {
+        return cartid;
+    }
+
+    public void setCartid(Integer cartid) {
+        this.cartid = cartid;
     }
 
     public Integer getUid() {
@@ -60,6 +132,22 @@ public class cartCdi {
         this.uid = uid;
     }
 
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public Date getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -67,24 +155,38 @@ public class cartCdi {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    public String addCart(){
-        ul.addCart(uid, status);
-        return "cart.xhtml";
+
+    public Collection<Cart> getCart() {
+        return cart;
     }
-    
-    public String updateCart(){
-        
-        return "cart.xhtml";
+
+    public void setCart(Collection<Cart> cart) {
+        this.cart = cart;
     }
-    
-    public void deleteCart(Integer cartid, Integer uid){
-        ul.deleteCart(cartid, uid);
+
+    public GenericType<Collection<Cart>> getGcart() {
+        return gcart;
     }
-    
-    public Collection<Cart> getAllCart(){
-        return ul.getAllCart();
+
+    public void setGcart(GenericType<Collection<Cart>> gcart) {
+        this.gcart = gcart;
     }
-    
+
+    public Collection<UserMst> getUser() {
+        return user;
+    }
+
+    public void setUser(Collection<UserMst> user) {
+        this.user = user;
+    }
+
+    public GenericType<Collection<UserMst>> getGuser() {
+        return guser;
+    }
+
+    public void setGuser(GenericType<Collection<UserMst>> guser) {
+        this.guser = guser;
+    }
+   
     
 }

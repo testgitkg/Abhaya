@@ -9,55 +9,60 @@
     <h:body>
         
         <center>
-        <f:view>
+            <f:view>
+                <h3><h:link value="Insert" outcome="feedbackInsert" /></h3>
+                <h:form>
+                    <h1><h:outputText value="Feedback"/></h1>
+                    <h:dataTable value="#{feedbackCdi.allFeedback}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Rating"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rating}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="FeedbackDate"/>
+                            </f:facet>
+                            <h:outputText value="#{item.feedbackDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Uid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uid.uname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Comments"/>
+                            </f:facet>
+                            <h:outputText value="#{item.comments}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Update" action="#{feedbackCdi.redirectToUpdate()}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Delete" action="#{feedbackCdi.deleteFeedback()}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
 
-            
-            <h:form>
-                <h1><h:outputText value="Feedback by user"/></h1>
-                <h:dataTable value="#{feedbackCdi.allFeedback}" var="item" border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Fid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Rating"/>
-                        </f:facet>
-                        <h:outputText value="#{item.rating}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="FeedbackDate"/>
-                        </f:facet>
-                        <h:outputText value="#{item.feedbackDate}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Uid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.uid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Comments"/>
-                        </f:facet>
-                        <h:outputText value="#{item.comments}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Delete" action="#{feedbackCdi}" onclick="return confirm('Are you sure to delete?(Y/N)')" />
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </f:view>
         </center>
-
         
     </h:body>
 </html>

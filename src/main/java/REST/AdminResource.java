@@ -122,9 +122,9 @@ public class AdminResource {
     }
     
     @DELETE
-    @Path("/deleteadmin/{aid}/{rid}")
-    public void deleteAdmin(@PathParam("aid")Integer aid, @PathParam("rid")Integer rid) {
-        al.deleteAdmin(aid, rid);
+    @Path("/deleteadmin/{aid}")
+    public void deleteAdmin(@PathParam("aid")Integer aid) {
+        al.deleteAdmin(aid);
     }
     
     @GET
@@ -162,9 +162,9 @@ public class AdminResource {
     }
     
     @DELETE
-    @Path("/deleteblog/{blogId}/{aid}")
-    public void deleteBlog(@PathParam("blogId")Integer blog_id, @PathParam("aid")Integer aid) {
-        al.deleteBlog(blog_id, aid);
+    @Path("/deleteblog/{blogId}")
+    public void deleteBlog(@PathParam("blogId")Integer blog_id) {
+        al.deleteBlog(blog_id);
     }
     
     @GET
@@ -274,9 +274,9 @@ public class AdminResource {
     }
     
     @DELETE
-    @Path("/deletemedicine/{mid}/{bid}/{catId}")
-    public void deleteMedicine(@PathParam("mid")Integer mid, @PathParam("bid")Integer bid, @PathParam("catId")Integer cat_id) {
-        al.deleteMedicine(mid, bid, cat_id);
+    @Path("/deletemedicine/{mid}")
+    public void deleteMedicine(@PathParam("mid")Integer mid) {
+        al.deleteMedicine(mid);
     }
     
     @GET
@@ -314,9 +314,9 @@ public class AdminResource {
     }
     
     @DELETE
-    @Path("/deletecartitem/{cartItemId}/{cartid}/{mid}")
-    public void deleteCartItem(@PathParam("cartItemId")Integer cart_item_id, @PathParam("cartid")Integer cartid, @PathParam("mid")Integer mid) {
-        al.deleteCartItem(cart_item_id, cartid, mid);
+    @Path("/deletecartitem/{cartItemId}")
+    public void deleteCartItem(@PathParam("cartItemId")Integer cart_item_id) {
+        al.deleteCartItem(cart_item_id);
     }
     
     @GET
@@ -340,9 +340,9 @@ public class AdminResource {
     }
     
     @DELETE
-    @Path("/deleteordermanage/{manageId}/{oid}")
-    public void deleteOrderManage(@PathParam("manageId")Integer manage_id, @PathParam("oid")Integer oid) {
-        al.deleteOrderManage(manage_id, oid);
+    @Path("/deleteordermanage/{manageId}")
+    public void deleteOrderManage(@PathParam("manageId")Integer manage_id) {
+        al.deleteOrderManage(manage_id);
     }
     
     @GET
@@ -373,9 +373,9 @@ public class AdminResource {
     }
 
     @DELETE
-    @Path("/deleteinventory/{inventoryId}/{mid}")
-    public void deleteInventory(@PathParam("inventoryId")Integer inventory_id, @PathParam("mid")Integer mid) {
-        al.deleteInventory(inventory_id, mid);
+    @Path("/deleteinventory/{inventoryId}")
+    public void deleteInventory(@PathParam("inventoryId")Integer inventory_id) {
+        al.deleteInventory(inventory_id);
     }
     
     @GET

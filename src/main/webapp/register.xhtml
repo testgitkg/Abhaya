@@ -7,66 +7,66 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        
         <center>
-        <f:view>
+            <f:view>
+                <h:form>
+                    <h1><h:outputText value="User"/></h1>
+                    <h:dataTable value="#{registerCdi.allUsers}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Uid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Rid"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rid.roleName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Uname"/>
+                            </f:facet>
+                            <h:outputText value="#{item.uname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Password"/>
+                            </f:facet>
+                            <h:outputText value="#{item.password}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Address"/>
+                            </f:facet>
+                            <h:outputText value="#{item.address}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Update" action="#{registerCdi.redirectToUpdate()}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandButton value="Delete" action="#{registerCdi.deleteUserMst()}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
 
-            <!--<h3><h:link value="Insert" outcome="insert_user" /></h3>-->
-            <h:form>
-                <h1><h:outputText value="User"/></h1>
-                <h:dataTable value="#{registerCdi.allUsers}" var="item" border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Uid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.uid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Rid"/>
-                        </f:facet>
-                        <h:outputText value="#{item.rid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Uname"/>
-                        </f:facet>
-                        <h:outputText value="#{item.uname}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Email"/>
-                        </f:facet>
-                        <h:outputText value="#{item.email}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Password"/>
-                        </f:facet>
-                        <h:outputText value="#{item.password}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Address"/>
-                        </f:facet>
-                        <h:outputText value="#{item.address}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Update" action="#{registerCdi.updateUserMst()}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Action"/>
-                        </f:facet>
-                        <h:commandButton value="Delete" action="#{registerCdi.deleteUser(item.uid, item.rid)}" onclick="return confirm('Are you sure to delete?(Y/N)')" />
-                    </h:column>
-                </h:dataTable>
-            </h:form>
-        </f:view>
-        </center>    
-
+            
+        </center>
         
     </h:body>
 </html>
