@@ -75,6 +75,7 @@ public interface adminLocal {
     Collection<Medicine> getAllMedicines();
     Collection<Medicine> getMedicineByMname(String mname);
     Collection<Medicine> getMediByAvailability(String availability);
+//    Collection<Medicine> getMedicineByCatId(String cat_id);
     
     //cart _item
     void addCartItem(Integer cartid, Integer mid, Integer quantity, BigDecimal price);

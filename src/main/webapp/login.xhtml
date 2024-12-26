@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            .login-container {
+                width: 400px;
+                height: 390px;
+                margin: 100px auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 30px;
+                background: #f9f9f9;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            .login-container h1 {
+                text-align: center;
+                margin-bottom: 50px;
+                color: #333;
+                font-family: Arial, sans-serif;
+            }
+            .login-container .form-item {
+                margin: 15px 0;
+            }
+            .login-container .form-item label {
+                display: block;
+                margin-top: 30px;
+                margin-bottom: 5px;
+                margin-left: 20px;
+                color: #555;
+            }
+            .login-container .form-item input {
+                width: 350px;                
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+            }
+            .login-container .form-item button {
+                width: 400px;
+                padding: 10px;
+                margin-top: 200px;
+                font-size: 18px;
+                color: white;
+                background: #007bff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .login-container .form-item button:hover {
+                background: #0056b3;
+            }
+        </style>
+        
+    </h:head>
+    <h:body>
+        
+        <div class="login-container">
+            <h1>Login</h1>
+            <h:form>
+                <div class="form-item">
+                    <label for="email">Email</label>
+                    <h:inputText id="email" value="#{registerCdi.email}" required="true" requiredMessage="Email is required" />
+                </div>
+                <div class="form-item">
+                    <label for="password">Password</label>
+                    <h:inputSecret id="password" value="#{registerCdi.password}" required="true" requiredMessage="Password is required" />
+                </div>
+                <div class="form-item">
+                    <h:commandButton value="Login" action="#{registerCdi.login()}" />
+                </div>
+                <h:messages globalOnly="true" style="color: red; font-size: 14px;" />
+            </h:form>
+        </div>
+        
+        
+    </h:body>
+</html>

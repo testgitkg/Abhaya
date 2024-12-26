@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <div style="width: 100%; height: 100%; position: relative; background: white">
+        
+        <f:view>
+                <h:form>
+                    <h1>
+                        <h:outputText value="Medicine" />
+                    </h1>
+                    
+                    <!-- Cards container -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 60px; margin-left: 100px;">
+                        <!-- Iterate through all medicines -->
+                        <ui:repeat value="#{medicineCdi.allMedicine}" var="item">
+                            <!-- Card style -->
+                            <div style="width: 220px; border: 1px solid #ddd; border-radius: 8px; padding: 16px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                <!-- Medicine image -->
+                                <div style="text-align: center;">
+                                    <img src="#{item.img}" alt="#{item.mname}" style="width: 100%; height: auto; border-radius: 8px;" />
+                                </div>
+                                <!-- Medicine details -->
+                                
+                                <div style="margin-top: 16px;">
+                                    <h2 style="font-size: 20px; font-family: Arial, sans-serif;">#{item.mname}</h2>
+                                    <p style="font-size: 14px; color: #666;">#{item.description}</p>
+                                    <p style="font-size: 14px; color: #666;">Price: ₹#{item.price}</p>
+                                    <p style="font-size: 14px; color: #666;">Quantity: #{item.quantity}</p>
+                                    <p style="font-size: 14px; color: #666;">Brand: #{item.bid.bname}</p>
+                                    <!--<p style="font-size: 14px; color: #666;">Category: #{item.catId.cname}</p>-->
+                                </div>
+                                <!-- Actions -->
+                                <div style="margin-top: 16px; text-align: center;">
+
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </h:form>
+            </f:view>
+        
+        <div style="width: 1370px; height: 409px; left: -10px; top: 1240px; position: absolute">
+        <div style="width: 1370px; height: 409px; left: 0px; top: 0px; position: absolute; background: #B4B4B4; box-shadow: 20px 20px 90px rgba(0, 0, 0, 0.22) inset"></div>
+        <div style="left: 106px; top: 260px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">
+            <a href="privacy.xhtml" style="color: black">Privacy Policy</a></div>
+        <div style="left: 106px; top: 223px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">
+            <a href="blogUser.xhtml" style="color: black">Blog</a></div>
+        <div style="left: 106px; top: 41px; position: absolute; color: black; font-size: 25px; font-family: Segoe UI; font-weight: 600; word-wrap: break-word"><u>INFORMATION</u></div>
+        <div style="left: 106px; top: 112px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">
+            <a href="aboutUs.xhtml" style="color: black">About Us</a></div>
+        <div style="left: 106px; top: 186px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">
+            <a href="contactUs.xhtml" style="color: black">Contact Us</a></div>
+        <div style="left: 105px; top: 149px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">
+            <a href="termsCon.xhtml" style="color: black">Terms &amp; Conditions</a></div>
+        <div style="width: 199.91px; height: 5.91px; left: 107.50px; top: 80.50px; position: absolute; transform: rotate(-1.69deg); transform-origin: 0 0; "></div>
+        <div style="left: 361px; top: 41px; position: absolute; color: black; font-size: 25px; font-family: Segoe UI; font-weight: 600; word-wrap: break-word"><u>EMAIL</u></div>
+        <div style="width: 199.91px; height: 5.91px; left: 362.50px; top: 80.50px; position: absolute; transform: rotate(-1.69deg); transform-origin: 0 0; "></div>
+        <div style="left: 740px; top: 41px; position: absolute; color: black; font-size: 25px; font-family: Segoe UI; font-weight: 600; word-wrap: break-word"><u>CONTACT US</u></div>
+        <div style="width: 199.91px; height: 5.91px; left: 741.50px; top: 80.50px; position: absolute; transform: rotate(-1.69deg); transform-origin: 0 0; "></div>
+        <div style="width: 345px; height: 44px; left: 355px; top: 105px; position: absolute; background: #F7F7F7; box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.25); border-radius: 20px"></div>
+        <div style="left: 375px; top: 119px; position: absolute; color: #9F9F9F; font-size: 16px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">Enter Your Email ID</div>
+        <img style="width: 24px; height: 24px; left: 663px; top: 115px; position: absolute" src="../assets/img/send.png" />
+    </div>
+    <div style="width: 1371px; height: 123px; left: -10px; top: -27px; position: absolute">
+        <div style="width: 1371px; height: 123px; left: 1371px; top: 123px; position: absolute; transform: rotate(-180deg); transform-origin: 0 0; background: #E9E9E9; box-shadow: 20px 40px 50px rgba(0, 0, 0, 0.26) inset; border-top-left-radius: 50px; border-top-right-radius: 50px"></div>
+        <div style="width: 716.55px; height: 123px; left: 147px; top: 0px; position: absolute">
+            <div style="width: 516.55px; height: 38px; left: 280px; top: 46px; position: absolute">
+                <div style="width: 38.55px; height: 28.50px; left: 496.91px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">
+                    <a href="blogUser.xhtml" style="color: black">Blog</a>
+                </div>
+                <div style="width: 88px; height: 28.50px; left: 230px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">
+                    <a href="medicineUser.xhtml" style="color: black">Medicines</a>
+                    <div style="width: 88.73px; height: 0px; left: -6px; top: 35px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border: 2px black solid"></div>
+                </div>
+                <div style="width: 50.91px; height: 28.50px; left: 18.91px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">
+                    <a href="home.xhtml" style="color: black">Home</a>                    
+                </div>
+                <div style="width: 80px; height: 28.50px; left: 109.91px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">
+                    <a href="aboutUs.xhtml" style="color: black">About Us</a>
+                </div>
+                <div style="width: 96.73px; height: 28.50px; left: 354.91px; top: 0px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">
+                    <a href="contactUs.xhtml" style="color: black">Contact Us</a>
+                </div>
+
+            </div>
+           
+        </div>
+    </div>
+    <a href="cart.xhtml">    
+    <img style="width: 33px; height: 33px; left: 1140px; top: 14px; position: absolute" src="..\assets\img\shopping-bag.png" />
+    </a>
+    <a href="registerInsert.xhtml">
+    <img style="width: 32px; height: 32px; left: 1200px; top: 14px; position: absolute" src="..\assets\img\user.png" />
+    <span style="position: absolute; left: 1241px; top: 18px; font-size: 18px; color: black;">Register</span>
+    </a>
+    <!--<img style="width: 33px; height: 33px; left: 1284px; top: 31px; position: absolute" src="..\assets\img\logout.png" />-->
+</div>
+        
+    </h:body>
+</html>

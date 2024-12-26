@@ -5,14 +5,95 @@
       xmlns:f="jakarta.faces.core">
     <h:head>
         <title>Facelet Title</title>
+        <style>
+            /* Navigation Bar */
+            .navbar {
+                height: 100%;
+                width: 250px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background-color: #333;
+                display: flex;
+                flex-direction: column;
+                padding-top: 20px;
+                overflow-y: auto; /* Enable vertical scrolling */
+                padding-bottom: 20px;
+            }
+            .navbar a {
+                padding: 10px 30px;
+                text-decoration: none;
+                font-size: 16px;
+                font-family: Inter, sans-serif;
+                color: white;
+                display: block;
+                transition: all 0.3s ease;
+            }
+            .navbar a:hover {
+                background-color: #575757;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                color: #fff;
+            }
+            /* Content Area */
+            .content {
+                margin-left: 270px;
+                padding: 20px;
+            }
+            /* Table Styling */
+            table {
+                width: 60%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 16px;
+                font-family: Arial, sans-serif;
+                text-align: left;
+                background-color: #f8f8f8;
+            }
+            table th, table td {
+                border: 1px solid #ddd;
+                padding: 12px;
+            }
+            table th {
+                background-color: #333;
+                color: white;
+            }
+            table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            table tr:hover {
+                background-color: #ddd;
+                transition: background-color 0.3s;
+            }
+        </style>
     </h:head>
     <h:body>
         
-        <center>
+        <div class="navbar">
+            <img src="../assets/img/logowhite.png" alt="Abhaya" style="color: gray" height="150px" width="150px"/>
+            <br/><br/>
+            <h:link value="Admin" outcome="admin" />
+            <h:link value="Blog" outcome="blog" />
+            <h:link value="Brand" outcome="brand" />
+            <h:link value="Cart" outcome="cart" />
+            <h:link value="Cart Item" outcome="cartItem" />
+            <h:link value="Category" outcome="category" />
+            <h:link value="Feedback" outcome="feedback" />
+            <h:link value="Form" outcome="form" />
+            <h:link value="Inventory" outcome="inventory" />
+            <h:link value="Medicine" outcome="medicine" />
+            <h:link value="Order" outcome="order" />
+            <h:link value="Order Item" outcome="orderItem" />
+            <h:link value="Order Manage" outcome="orderManage" />
+            <h:link value="User" outcome="register" />
+            <h:link value="Role" outcome="role" />
+        </div>
+        <div class="content">
+            <center>
             <f:view>
-                <h3><h:link value="Insert" outcome="roleInsert" /></h3>
+                
                 <h:form>
                     <h1><h:outputText value="Role"/></h1>
+                    <h3><h:link value="Insert" outcome="roleInsert" /></h3>
                     <h:dataTable value="#{roleCdi.allRoles}" var="item" border="1">
                         <h:column>
                             <f:facet name="header">
@@ -36,14 +117,17 @@
                             <f:facet name="header">
                                 <h:outputText value="Action"/>
                             </f:facet>
-                            <h:commandButton value="Delete" action="#{roleCdi.deleteRole()}"/>
+                            <!--<h:commandButton value="Delete" action="#{roleCdi.deleteRole()}"/>-->
+                            <h:commandLink value="delete" action="#{roleCdi.deleteRole()}">
+                                <f:setPropertyActionListener value="#{item.rid}" target="#{roleCdi.rid}"/>
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:form>
             </f:view>
-
-            
         </center>
+        </div>
+        
         
     </h:body>
 </html>

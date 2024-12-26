@@ -5,9 +5,11 @@
 package cdi;
 
 import client.adminClient;
+import ejb.adminLocal;
 import entity.Brand;
 import entity.Category;
 import entity.Medicine;
+import jakarta.ejb.EJB;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.ws.rs.core.GenericType;
@@ -25,6 +27,7 @@ import java.util.Collection;
 public class medicineCdi implements Serializable {
     
     adminClient ac;
+    @EJB adminLocal al;
     Response rs;
     Medicine m;
     Brand b;
@@ -98,6 +101,12 @@ public class medicineCdi implements Serializable {
     public String redirectToUpdate(){
         return "medicineUpdate.xhtml";
     }
+    
+//    public Collection<Medicine> getMedicinesByCategory(String cname) {
+//    // Implement logic to fetch medicines by category from database or service
+//    return al.getMedicineByCatId(cname);
+//}
+
 
     public adminClient getAc() {
         return ac;

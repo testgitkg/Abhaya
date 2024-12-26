@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+<h:form>
+        <h1><h:outputText value="Brands" /></h1>
+        <h3><h:link value="Insert" outcome="brandInsert" /></h3>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                    <h:dataTable value="" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Bid"/>
+                        </f:facet>
+                        <h:outputText value="1"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Bname"/>
+                        </f:facet>
+                        <h:outputText value="sds"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Bimg"/>
+                        </f:facet>
+                            <h:graphicImage value="http://localhost:8080/abhaya/src/main/webapp/assets/img/himalaya.png"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Manufacturer"/>
+                        </f:facet>
+                        <h:outputText value="ddsa"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="CountryOrigin"/>
+                        </f:facet>
+                        <h:outputText value="sads"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="SiteUrl"/>
+                        </f:facet>
+                        <h:outputText value="sad"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+</h:form>
+    </h:body>
+</html>

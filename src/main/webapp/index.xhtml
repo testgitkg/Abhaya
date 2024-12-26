@@ -3,151 +3,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Facelet Page</title>
+        <style>
+            body {
+                background-image: url("../asstes/img/p-6.jpg"); /* Path to the uploaded image */
+                background-size: cover; /* Make sure the image covers the entire viewport */
+                background-repeat: no-repeat; /* Prevent the image from repeating */
+                background-attachment: fixed; /* Fix the background when scrolling */
+                background-position: center; /* Center the background image */
+                margin: 0;
+                font-family: 'Arial', sans-serif;
+                color: #ffffff; /* White text for contrast */
+            }
+
+            h3 {
+                text-align: center;
+                background: rgba(0, 0, 0, 0.6); /* Add a semi-transparent background behind text */
+                padding: 20px;
+                border-radius: 10px;
+                display: inline-block;
+            }
+
+            h3 a {
+                display: block;
+                text-decoration: none;
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.2); /* Semi-transparent button effect */
+                padding: 10px 20px;
+                margin: 10px 0;
+                border-radius: 5px;
+                font-size: 18px;
+                font-weight: bold;
+                transition: background 0.3s ease, color 0.3s ease;
+            }
+
+            h3 a:hover {
+                background: #ffffff; /* Solid white background on hover */
+                color: #000000; /* Black text on hover */
+            }
+        </style>
     </h:head>
     <h:body>
-        
-        <div style="width: 100%; height: 100%; position: relative; background: white">
-    <div style="width: 1370px; height: 660px; left: 0px; top: 0px; position: absolute; background: white"></div>
-    <div style="width: 1370px; height: 376px; left: 0px; top: 944px; position: absolute; background: #E9E9E9"></div>
-    
-    <div style="width: 1370px; height: 225px; left: 2px; top: 142px; position: absolute">
-        <div style="width: 1370px; height: 65px; left: 0px; top: 0px; position: absolute">
-            <div style="width: 1370px; height: 65px; left: 0px; top: 0px; position: absolute; background: #EDEDED"></div>
-            <div style="width: 281px; height: 30px; left: 543px; top: 18px; position: absolute">
-                <div style="left: 30px; top: 0px; position: absolute; color: #7E7E7E; font-size: 25px; font-family: Inter; font-weight: 700; word-wrap: break-word">Shop By Category</div>
-                <div style="width: 24px; height: 24px; left: 0px; top: 3px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 24px; height: 24px; position: relative">
-                        <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute"></div>
-                        <div style="width: 16.36px; height: 21.51px; left: 3.82px; top: 1.24px; position: absolute; background: #7E7E7E"></div>
-                        <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute; opacity: 0"></div>
-                    </div>
-                </div>
-                <div style="width: 24px; height: 24px; left: 257px; top: 4px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                    <div style="width: 24px; height: 24px; position: relative">
-                        <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute"></div>
-                        <div style="width: 16.36px; height: 21.51px; left: 3.82px; top: 1.24px; position: absolute; background: #7E7E7E"></div>
-                        <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute; opacity: 0"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div style="width: 175px; height: 138px; left: 135px; top: 87px; position: absolute">
-            <div style="width: 175px; height: 138px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px #EDEDED solid"></div>
-            <div style="left: 21px; top: 95px; position: absolute; color: black; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Repository-Care</div>
-            <img style="width: 74px; height: 67px; left: 52px; top: 12px; position: absolute" src="assets\img\lungs_14476688.png" />
-        </div>
-        <div style="width: 175px; height: 138px; left: 358px; top: 87px; position: absolute">
-            <div style="width: 175px; height: 138px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px #EDEDED solid"></div>
-            <div style="left: 49px; top: 95px; position: absolute; color: black; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Skin-Care</div>
-            <img style="width: 74px; height: 67px; left: 52px; top: 12px; position: absolute" src="assets\img\skin.png" />
-        </div>
-        <div style="width: 175px; height: 138px; left: 579px; top: 87px; position: absolute">
-            <div style="width: 175px; height: 138px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px #EDEDED solid"></div>
-            <div style="left: 44px; top: 95px; position: absolute; color: black; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Baby-Care</div>
-            <img style="width: 74px; height: 67px; left: 52px; top: 12px; position: absolute" src="assets\img\bcare.png" />
-        </div>
-        <div style="width: 175px; height: 138px; left: 803px; top: 87px; position: absolute">
-            <div style="width: 175px; height: 138px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px #EDEDED solid"></div>
-            <div style="width: 167px; left: 6px; top: 95px; position: absolute; text-align: center; color: black; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Brain - Nerve Care</div>
-            <img style="width: 74px; height: 74px; left: 52px; top: 7px; position: absolute" src="assets\img\brain.png" />
-        </div>
-        <div style="width: 175px; height: 138px; left: 1033px; top: 87px; position: absolute">
-            <div style="width: 175px; height: 138px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px #EDEDED solid"></div>
-            <div style="left: 50px; top: 95px; position: absolute; text-align: center; color: black; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Hair-care</div>
-            <img style="width: 74px; height: 74px; left: 53px; top: 12px; position: absolute" src="assets\img\haircare.png" />
-        </div>
-        
-    </div>
-    <div style="width: 1165px; height: 325px; left: 114px; top: 962px; position: absolute">
-        <div style="left: 488px; top: 0px; position: absolute; color: #3D3D3D; font-size: 30px; font-family: Inter; font-weight: 700; word-wrap: break-word">Top Brands</div>
-        <div style="left: 488px; top: 0px; position: absolute; color: #3D3D3D; font-size: 30px; font-family: Inter; font-weight: 700; word-wrap: break-word">Top Brands</div>
-        <img style="width: 142px; height: 71px; left: 0px; top: 80px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\himalaya.png" />
-        <img style="width: 99px; height: 97px; left: 221px; top: 59px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\dabur 1.png" />
-        <img style="width: 97px; height: 86px; left: 400px; top: 65px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\soultree 1.png" />
-        <img style="width: 142px; height: 144px; left: 581px; top: 36px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\kerela 1.png" />
-        <img style="width: 137px; height: 107px; left: 789px; top: 54px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\boitique 1.png" />
-        <img style="width: 170px; height: 92px; left: 995px; top: 62px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\hroots 1.png" />
-        <img style="width: 129px; height: 116px; left: 385px; top: 209px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\zandu 1.png" />
-        <img style="width: 177px; height: 94px; left: 568px; top: 225px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\nuralz 1.png" />
-    </div>
-    <div style="width: 1323.86px; height: 482px; left: 25px; top: 419px; position: absolute">
-        <img style="width: 1188px; height: 482px; left: 68px; top: 0px; position: absolute; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); border-radius: 40px" src="assets\img\abanner 1.png" />
-        <img style="width: 50px; height: 52.50px; left: 0px; top: 268px; position: absolute; transform: rotate(-90deg); transform-origin: 0 0" src="assets\img\arrow-up_17216310 1.png" />
-        <img style="width: 50px; height: 52.54px; left: 1323.86px; top: 218.34px; position: absolute; transform: rotate(90.37deg); transform-origin: 0 0" src="assets\img\arrow-up_17216310 2.png" />
-    </div>
-    <div style="width: 1227px; height: 142px; left: 73px; top: 0px; position: absolute">
-        <img style="width: 33px; height: 33px; left: 1194px; top: 31px; position: absolute" src="assets\img\shopping-bag.png" />
-        <div style="width: 33px; height: 29.01px; left: 1050px; top: 36px; position: absolute; background: #292D32"></div>
-        <div style="width: 535.45px; height: 35px; left: 259px; top: 93px; position: absolute">
-            <div style="width: 38.55px; height: 28.50px; left: 496.91px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Blog</div>
-            <div style="width: 88px; height: 28.50px; left: 230px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Medicines</div>
-            <div style="width: 50.91px; height: 28.50px; left: 18.91px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Home</div>
-            <div style="width: 80px; height: 28.50px; left: 109.91px; top: 0.20px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">About Us</div>
-            <div style="width: 96.73px; height: 28.50px; left: 354.91px; top: 0px; position: absolute; color: #4F4F4F; font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Contact Us</div>
-            <div style="width: 88.73px; height: 0px; left: 0px; top: 35px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border: 2px black solid"></div>
-        </div>
-        <img style="width: 33px; height: 33px; left: 1122px; top: 34px; position: absolute" src="assets\img\user.png" />
-        <img style="width: 136px; height: 142px; left: 0px; top: 0px; position: absolute" src="assets\img\logo.png" />
-        <div style="width: 647.27px; height: 41.39px; left: 239px; top: 30px; position: absolute">
-            <div style="width: 647.27px; height: 41.39px; left: 0px; top: 0px; position: absolute; background: #EDEDED; border-radius: 45px"></div>
-            <div style="width: 84px; height: 18.88px; left: 19.82px; top: 8.95px; position: absolute; color: rgba(107.26, 107.26, 107.26, 0.60); font-size: 18px; font-family: Arial; font-weight: 400; word-wrap: break-word">Search</div>
-            <img style="width: 25px; height: 25px; left: 597.82px; top: 7.95px; position: absolute" src="assets\img\search.png" />
-        </div>
-    </div>
-    <div style="left: 544px; top: 1353px; position: absolute; color: #3D3D3D; font-size: 30px; font-family: Inter; font-weight: 700; word-wrap: break-word">Top Selling Products</div>
-    <div style="width: 241px; height: 364px; left: 137px; top: 1449px; position: absolute">
-        <div style="width: 241px; height: 364px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px black solid"></div>
-        <div style="width: 83.07px; height: 19px; left: 38.34px; top: 256px; position: absolute; color: #5A5A5A; font-size: 10px; font-family: Arial; font-weight: 400; word-wrap: break-word">Cough Relief</div>
-        <div style="width: 43.82px; height: 22px; left: 38.34px; top: 304px; position: absolute; color: #060606; font-size: 11px; font-family: Arial; font-weight: 400; word-wrap: break-word">Rs. 499</div>
-        <img style="width: 177px; height: 186px; left: 32px; top: 24px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\cough.png" />
-        <div style="width: 165.23px; height: 15px; left: 38.34px; top: 231px; position: absolute; color: black; font-size: 13px; font-family: Arial; font-weight: 400; word-wrap: break-word">Multani Kuka Cough Syrup</div>
-        <img style="width: 45px; height: 45px; left: 173px; top: 282px; position: absolute" src="assets\img\buy.png" />
-    </div>
-    <div style="width: 241px; height: 364px; left: 424px; top: 1449px; position: absolute">
-        <div style="width: 241px; height: 364px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px black solid"></div>
-        <div style="width: 155px; height: 15px; left: 38px; top: 256px; position: absolute; color: #5A5A5A; font-size: 10px; font-family: Arial; font-weight: 400; word-wrap: break-word">Best for Weight loss naturally</div>
-        <div style="width: 43.82px; height: 22px; left: 38.34px; top: 304px; position: absolute; color: #060606; font-size: 11px; font-family: Arial; font-weight: 400; word-wrap: break-word">Rs. 600</div>
-        <img style="width: 161px; height: 177px; left: 41px; top: 31px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\weight.png" />
-        <div style="width: 165.23px; height: 15px; left: 38.34px; top: 231px; position: absolute; color: black; font-size: 13px; font-family: Arial; font-weight: 400; word-wrap: break-word">Kapiva Get Slim Juice</div>
-        <img style="width: 45px; height: 45px; left: 173px; top: 282px; position: absolute" src="assets\img\buy.png" />
-    </div>
-    <div style="width: 241px; height: 364px; left: 993px; top: 1449px; position: absolute">
-        <div style="width: 241px; height: 364px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px black solid"></div>
-        <div style="width: 168px; height: 19px; left: 38px; top: 256px; position: absolute; color: #5A5A5A; font-size: 10px; font-family: Arial; font-weight: 400; word-wrap: break-word">Used in managemnet of Diabetes</div>
-        <div style="width: 43.82px; height: 22px; left: 38.34px; top: 304px; position: absolute; color: #060606; font-size: 11px; font-family: Arial; font-weight: 400; word-wrap: break-word">Rs. 399</div>
-        <img style="width: 177px; height: 148px; left: 32px; top: 34px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\diabetes.png" />
-        <div style="width: 180px; height: 15px; left: 38px; top: 231px; position: absolute; color: black; font-size: 13px; font-family: Arial; font-weight: 400; word-wrap: break-word">Vedical SugCare’tm Tablets</div>
-        <img style="width: 45px; height: 45px; left: 173px; top: 282px; position: absolute" src="assets\img\buy.png" />
-    </div>
-    <div style="width: 241px; height: 364px; left: 711px; top: 1449px; position: absolute">
-        <div style="width: 241px; height: 364px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px black solid"></div>
-        <div style="width: 135px; height: 19px; left: 38px; top: 256px; position: absolute; color: #5A5A5A; font-size: 10px; font-family: Arial; font-weight: 400; word-wrap: break-word">Reduces fever efficiently</div>
-        <div style="width: 43.82px; height: 22px; left: 38.34px; top: 304px; position: absolute; color: #060606; font-size: 11px; font-family: Arial; font-weight: 400; word-wrap: break-word">Rs. 599</div>
-        <img style="width: 177px; height: 177px; left: 34px; top: 29px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="assets\img\fever.png" />
-        <div style="width: 165.23px; height: 15px; left: 38.34px; top: 231px; position: absolute; color: black; font-size: 13px; font-family: Arial; font-weight: 400; word-wrap: break-word">Maha Herbal Fever Peace</div>
-        <img style="width: 45px; height: 45px; left: 173px; top: 282px; position: absolute" src="assets\img\buy.png" />
-    </div>
-    
-    <div style="width: 26px; height: 30.21px; left: 49px; top: 1619.75px; position: absolute; background: #292D32"></div>
-    <div style="width: 30px; height: 30.21px; left: 1286px; top: 1619.75px; position: absolute; background: #292D32"></div>
-    <div style="width: 1370px; height: 409px; left: 0px; top: 1900px; position: absolute">
-        <div style="width: 1370px; height: 409px; left: 0px; top: 0px; position: absolute; background: #B4B4B4; box-shadow: 20px 20px 90px rgba(0, 0, 0, 0.22) inset"></div>
-        <div style="left: 106px; top: 260px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">Privacy Policy</div>
-        <div style="left: 106px; top: 223px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">Blog</div>
-        <div style="left: 106px; top: 41px; position: absolute; color: black; font-size: 25px; font-family: Segoe UI; font-weight: 600; word-wrap: break-word">INFORMATION</div>
-        <div style="left: 106px; top: 112px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">About Us</div>
-        <div style="left: 106px; top: 186px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">Contact Us</div>
-        <div style="left: 105px; top: 149px; position: absolute; color: black; font-size: 18px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">Terms - Conditions</div>
-        <div style="width: 199.91px; height: 5.91px; left: 107.50px; top: 80.50px; position: absolute; transform: rotate(-1.69deg); transform-origin: 0 0; border: 2px black solid"></div>
-        <div style="left: 361px; top: 41px; position: absolute; color: black; font-size: 25px; font-family: Segoe UI; font-weight: 600; word-wrap: break-word">EMAIL</div>
-        <div style="width: 199.91px; height: 5.91px; left: 362.50px; top: 80.50px; position: absolute; transform: rotate(-1.69deg); transform-origin: 0 0; "></div>
-        <div style="left: 740px; top: 41px; position: absolute; color: black; font-size: 25px; font-family: Segoe UI; font-weight: 600; word-wrap: break-word">CONTACT US</div>
-        <div style="width: 199.91px; height: 5.91px; left: 741.50px; top: 80.50px; position: absolute; transform: rotate(-1.69deg); transform-origin: 0 0; "></div>
-        <div style="width: 345px; height: 44px; left: 355px; top: 105px; position: absolute; background: #F7F7F7; box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.25); border-radius: 20px"></div>
-        <div style="left: 375px; top: 119px; position: absolute; color: #9F9F9F; font-size: 16px; font-family: Segoe UI Emoji; font-weight: 400; word-wrap: break-word">Enter Your Email ID</div>
-        <img style="width: 24px; height: 24px; left: 663px; top: 115px; position: absolute" src="assets\img\send.png" />
-    </div>
-</div>
+        <center>
+            <h3>
+                <h:link value="Login" outcome="login" /><br/>
+                <h:link value="Home" outcome="home" /><br/>
+                <h:link value="Admin" outcome="homeAdmin" />
+            </h3>
+        </center>
     </h:body>
 </html>

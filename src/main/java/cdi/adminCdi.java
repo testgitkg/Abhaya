@@ -7,8 +7,11 @@ package cdi;
 import client.adminClient;
 import entity.Admin;
 import entity.Role;
+import entity.UserMst;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
 import java.io.Serializable;
@@ -83,6 +86,30 @@ public class adminCdi implements Serializable {
     public String redirectToUpdate(){
         return "adminUpdate.xhtml";
     }
+    
+//    public String login(){
+//        rs = ac.getAllAdmin(Response.class);
+//        admin = rs.readEntity(gadmin);
+//        
+//        for(Admin ad : admin){
+//            if(ad.getEmail().equals(email) && ad.getPassword().equals(password) ){
+//                this.aid = ad.getAid();
+//                this.aname = ad.getAname();
+//                this.email = ad.getEmail();
+//                this.r = ad.getRid();
+//                
+//                if("admin".equalsIgnoreCase(r.getRoleName()) ){
+//                    return "/faces/homeAdmin.xhtml?faces-redirect=true";
+//                }
+//                else{
+//                    return "/faces/home.xhtml?faces-redirect=true";
+//                }
+//            }
+//        }
+//        
+//        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Invalid username or password"));
+//        return "login.xhtml";
+//    }
 
     public adminClient getAc() {
         return ac;

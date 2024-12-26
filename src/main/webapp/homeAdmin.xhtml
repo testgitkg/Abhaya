@@ -4,7 +4,8 @@
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core">
     <h:head>
-        <title>Facelet Title</title><style>
+        <title>Facelet Title</title>
+        <style>
             /* Navigation Bar */
             .navbar {
                 height: 100%;
@@ -40,7 +41,7 @@
             }
             /* Table Styling */
             table {
-                width: 50%;
+                width: 60%;
                 border-collapse: collapse;
                 margin: 20px 0;
                 font-size: 16px;
@@ -50,7 +51,7 @@
             }
             table th, table td {
                 border: 1px solid #ddd;
-                padding: 12px;                
+                padding: 12px;
             }
             table th {
                 background-color: #333;
@@ -68,7 +69,7 @@
     <h:body>
         
         <div class="navbar">
-            <img src="../assets/img/logowhite.png" alt="Abhaya" style="color: gray" height="150px" width="150px"/>
+            <img src="..\assets\img\logowhite.png" height="150px" width="150px" />
             <br/><br/>
             <h:link value="Admin" outcome="admin" />
             <h:link value="Blog" outcome="blog" />
@@ -87,65 +88,42 @@
             <h:link value="Role" outcome="role" />
         </div>
         <div class="content">
-        
-        <center>
-            
+            <center>
             <f:view>
-                
+                 <!--Replace #{roleCdi.allRoles} with the desired CDI bean collection--> 
                 <h:form>
-                    <h1><h:outputText value="Cart Item"/></h1>
-                    <h3><h:link value="Insert" outcome="cartItemInsert" /></h3>
-                    <h:dataTable value="#{cartItemCdi.allCartItem}" var="item" border="1">
+                    <h1>Role Data</h1>
+                    <h3><h:link value="Insert" outcome="roleInsert" /></h3>
+                    <h:dataTable value="#{roleCdi.allRoles}" var="item" border="1">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="CartItemId"/>
+                                <h:outputText value="Rid" />
                             </f:facet>
-                            <h:outputText value="#{item.cartItemId}"/>
+                            <h:outputText value="#{item.rid}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Quantity"/>
+                                <h:outputText value="RoleName" />
                             </f:facet>
-                            <h:outputText value="#{item.quantity}"/>
+                            <h:outputText value="#{item.roleName}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Price"/>
+                                <h:outputText value="Action" />
                             </f:facet>
-                            <h:outputText value="#{item.price}"/>
+                            <h:commandButton value="Update" action="#{roleCdi.redirectToUpdate()}" />
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Cartid"/>
+                                <h:outputText value="Action" />
                             </f:facet>
-                            <h:outputText value="#{item.cartid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Mid"/>
-                            </f:facet>
-                            <h:outputText value="#{item.mid.mname}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Action"/>
-                            </f:facet>
-                            <h:commandButton value="Update" action="#{cartItemCdi.redirectToUpdate()}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Action"/>
-                            </f:facet>
-                            <!--<h:commandButton value="Delete" action="#{cartItemCdi.deleteCartItem()}" />-->
-                            <h:commandLink value="delete" action="#{cartItemCdi.deleteCartItem()}">
-                                <f:setPropertyActionListener value="#{item.cartItemId}" target="#{cartItemCdi.cart_item_id}"/>
-                            </h:commandLink>
+                            <h:commandButton value="Delete" action="#{roleCdi.deleteRole()}" />
                         </h:column>
                     </h:dataTable>
                 </h:form>
             </f:view>
-
-        </center> 
+            </center>
+            
         </div>
         
     </h:body>

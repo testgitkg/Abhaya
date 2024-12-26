@@ -4,11 +4,14 @@
  */
 package cdi;
 
+import client.adminClient;
 import client.userClient;
 import entity.Role;
 import entity.UserMst;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
 import java.io.Serializable;
@@ -24,6 +27,7 @@ import java.util.Collection;
 public class registerCdi implements Serializable {
     
     userClient uc;
+    adminClient ac;
     Response rs;
     UserMst u;
     Role r;
@@ -45,6 +49,7 @@ public class registerCdi implements Serializable {
      */
     public registerCdi() {
         uc = new userClient();
+        ac = new adminClient();
         user = new ArrayList<>();
         guser = new GenericType<Collection<UserMst>>(){};
         role = new ArrayList<>();
@@ -55,18 +60,12 @@ public class registerCdi implements Serializable {
 
     public String addUserMst(){
         uc.addUserMst(uname, email, password, address, String.valueOf(rid));
-        return "register.xhtml";
+        return "home.xhtml?faces-redirect=true";
     }
     
     public String updateUserMst(){
-        uid = u.getUid();
-        uname = u.getUname();
-        email = u.getEmail();
-        password = u.getPassword();
-        address = u.getAddress();
-        r = u.getRid();
-        
-        uc.updateUserMst(String.valueOf(uid), uname, email, password, address, String.valueOf(rid));
+        uc.updateUserMst(String.valueOf(u.getUid()), u.getUname(), u.getEmail(),
+                u.getPassword(), u.getAddress(), String.valueOf(u.getRid().getRid()));
         u = new UserMst();
         return "register.xhtml";
     }
@@ -83,14 +82,54 @@ public class registerCdi implements Serializable {
     }
     
     public String redirectToUpdate(){
-        return "registerUpdate.xhtml";
+        return "registerInsert.xhtml?faces-redirect=true";
     }
     
+    
+    
+//    login
+    
+    public String login(){
+        rs = ac.getAllUsers(Response.class);
+        user = rs.readEntity(guser);
+        
+        for(UserMst us : user){
+            if(us.getEmail().equals(email) && us.getPassword().equals(password) ){
+                this.uid = us.getUid();
+                this.uname = us.getUname();
+                this.email = us.getEmail();
+                this.address = us.getAddress();
+                this.r = us.getRid();
+                
+                if("admin".equalsIgnoreCase(r.getRoleName()) ){
+                    return "/faces/homeAdmin.xhtml?faces-redirect=true";
+                }
+                else{
+                    return "/faces/home.xhtml?faces-redirect=true";
+                }
+            }
+        }
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Invalid username or password"));
+        return "login.xhtml";
+    }
+    
+//    log out
+    
+//    public String logout() {
+//        // Invalidate the current session
+////        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+//
+//        // Redirect to the login page
+//        return "../faces/login.xhtml?faces-redirect=true";
+//    }
+
+
     
     public userClient getUc() {
         return uc;
     }
-
+    
     public void setUc(userClient uc) {
         this.uc = uc;
     }
@@ -198,6 +237,17 @@ public class registerCdi implements Serializable {
     public void setGrole(GenericType<Collection<Role>> grole) {
         this.grole = grole;
     }
-        
+
+    public adminClient getAc() {
+        return ac;
+    }
+
+    public void setAc(adminClient ac) {
+        this.ac = ac;
+    }
+       public String redirectToRegister() {
+        // Redirect to the desired page
+        return "registerInsert?faces-redirect=true";
+    }  
     
 }

@@ -371,6 +371,14 @@ public class admin implements adminLocal {
         return em.createNamedQuery("Medicine.findByAvailability").setParameter("availability", availability).getResultList();
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+//    @Override
+//    public Collection<Medicine> getMedicineByCatId(String cat_id) {
+//        return em.createNamedQuery("Medicine.findByCatId").setParameter("cat_id", cat_id).getResultList();
+////        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+    
+    
     
     
 //    Cart item

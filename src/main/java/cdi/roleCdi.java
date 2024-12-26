@@ -69,7 +69,7 @@ public class roleCdi {
     }
     
     public Collection<Role> getAllRoles(){
-        rs = ac.getAllAdmin(Response.class);
+        rs = ac.getAllRoles(Response.class);
         role = rs.readEntity(grole);
         return role;
     }

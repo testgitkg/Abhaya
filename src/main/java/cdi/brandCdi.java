@@ -8,17 +8,16 @@ import client.adminClient;
 import entity.Brand;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
-//import jakarta.servlet.http.Part;
+import jakarta.servlet.http.Part;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.Response;
-//import java.io.File;
-//import java.io.IOException;
-//import java.io.InputStream;
+import java.io.File;
+import java.io.InputStream;
 import java.io.Serializable;
-//import java.nio.file.Files;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
-//import java.util.Random;
+import java.util.Random;
 
 /**
  *
@@ -38,7 +37,8 @@ public class brandCdi implements Serializable {
     String manufacturer;
     String country_origin;
     String site_url;
-//    private Part photofile;
+    private Part photofile;
+    
     Collection<Brand> brand;
     GenericType<Collection<Brand>> gbrand;
     
@@ -58,25 +58,30 @@ public class brandCdi implements Serializable {
         try{
 //            if(photofile != null){
 //                InputStream input = photofile.getInputStream();
-//                String path = "E:\\Java EE\\abhaya\\src\\main\\webapp\\assets\\brand";
+//                String path = "E:\\Java EE\\abhaya\\src\\main\\webapp\\assets\\img";
 //                Random random = new Random();
 //                StringBuilder sb = new StringBuilder();
 //                
+//                
 //                // Generate random file name
-//                sb.append(random.nextInt(9) + 1);
-//                for (int i = 0; i < 11; i++) {
-//                    sb.append(random.nextInt(10));
-//                }
-//                String temp = sb.toString();
+////                sb.append(random.nextInt(9) + 1);
+////                for (int i = 0; i < 11; i++) {
+////                    sb.append(random.nextInt(10));
+////                }
+////                String temp = sb.toString();
 //                
 //                // Final image name
-//                bimg = "IMG_" + temp + photofile.getSubmittedFileName();
+////                bimg = "IMG_" + temp + photofile.getSubmittedFileName();
+//                bimg = "IMG_" + System.currentTimeMillis() + photofile.getSubmittedFileName().replaceAll(" ", "").replaceAll("[<>:\"/\\\\|?*]", "");
+//
 //                Files.copy(input, new File(path, bimg).toPath());
+//            
+//            
 //            } else {
 //                bimg = ""; // Default to an empty string if no file is uploaded
-//            }                    
-        
-            ac.addBrand(bname, bimg, manufacturer, country_origin, site_url);
+//            }    
+            
+        ac.addBrand(bname, bimg, manufacturer, country_origin, site_url);
             return "brand.xhtml";
         
 //        } catch (IOException e) {

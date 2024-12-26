@@ -4,34 +4,118 @@
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Register User</title>
+        <style>
+            /* General container style for the form */
+            .form-container {
+                width: 400px;
+                margin: 100px auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 30px;
+                background: #f9f9f9;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Header style */
+            .form-container h1 {
+                text-align: center;
+                margin-bottom: 50px;
+                color: #333;
+                font-family: Arial, sans-serif;
+            }
+
+            /* Label and Input styling */
+            .form-container .form-item {
+                margin: 15px 0;
+            }
+
+            .form-container .form-item label {
+                display: block;
+                margin-left:  20px;
+                margin-top: 10px;
+                margin-bottom: 5px;
+                color: #555;
+            }
+
+            .form-container .form-item input,
+            .form-container .form-item select {
+                width: 350px;
+                margin-left:  15px;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+            }
+
+            /* Button style */
+            .form-container .button {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            .form-container .button button {
+                width: 400px;
+                padding: 10px;
+                font-size: 18px;
+                color: white;
+                background: #007bff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .form-container .button button:hover {
+                background: #0056b3;
+            }
+
+            /* Error message styling */
+            .form-container .error-message {
+                color: red;
+                font-size: 14px;
+            }
+        </style>
     </h:head>
     <h:body>
-        
-        <center>
-            
-            <f:view>
-                <h:form>
-                    <h1><h:outputText value="Add"/></h1>
-                    <h:panelGrid columns="2">
-                        <h:outputLabel value="Rid:" for="rid" />
-                        <h:selectOneMenu id="rid" value="#{registerCdi.rid}" title="Rid">
-                            <f:selectItems value="#{roleCdi.allRoles}" var="role" itemValue="#{role.rid}" itemLabel="#{role.roleName}"/>
-                        </h:selectOneMenu>
-                        <h:outputLabel value="Uname:" for="uname" />
-                        <h:inputText id="uname" value="#{registerCdi.uname}" title="Uname" />
-                        <h:outputLabel value="Email:" for="email" />
-                        <h:inputText id="email" value="#{registerCdi.email}" title="Email" />
-                        <h:outputLabel value="Password:" for="password" />
-                        <h:inputText id="password" value="#{registerCdi.password}" title="Password" />
-                        <h:outputLabel value="Address:" for="address" />
-                        <h:inputText id="address" value="#{registerCdi.address}" title="Address" />
-                    </h:panelGrid> <br/>
-                    <h:commandButton value="Submit" action="#{registerCdi.addUserMst()}" />
-                </h:form>
-            </f:view>
+        <div class="form-container">
+            <h1>Register User</h1>
+            <h:form>
+                <div class="form-item">
+                    <label for="rid">Role:</label>
+                    <h:selectOneMenu id="rid" value="#{registerCdi.rid}" title="Role">
+                        <f:selectItems value="#{roleCdi.allRoles}" var="role"
+                                       itemValue="#{role.rid}" 
+                                       itemLabel="#{role.roleName}" />
+                    </h:selectOneMenu>
+                </div>
 
-        </center>
-        
+                <div class="form-item">
+                    <label for="uname">Name:</label>
+                    <h:inputText id="uname" value="#{registerCdi.uname}" title="Name" />
+                </div>
+
+                <div class="form-item">
+                    <label for="email">Email:</label>
+                    <h:inputText id="email" value="#{registerCdi.email}" title="Email" />
+                </div>
+
+                <div class="form-item">
+                    <label for="password">Password:</label>
+                    <h:inputSecret id="password" value="#{registerCdi.password}" title="Password" />
+                </div>
+
+                <div class="form-item">
+                    <label for="address">Address:</label>
+                    <h:inputText id="address" value="#{registerCdi.address}" title="Address" />
+                </div>
+
+                <div class="form-item">
+                    <h:commandButton value="Submit" action="#{registerCdi.addUserMst()}" />
+                </div>
+
+                <h:messages class="error-message" globalOnly="true" />
+            </h:form>
+        </div>
     </h:body>
 </html>
